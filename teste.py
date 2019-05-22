@@ -1,7 +1,0 @@
-print('deu certo')
-print('branch aldivio')
-print('branch aldivio 2')
-print('paulo arrombado')
-print('teste 5')
-print('eita trem ')
-print('jonny me ensiou a poha ')
