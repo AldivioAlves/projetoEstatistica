@@ -32,7 +32,7 @@ calculadora = function () {
                 if (teste != -1) {
                     desvioPadraoUniforme = Math.sqrt(Math.pow(maximoValorUniforme - minimoValorUniforme, 2) / 12)
                     desvioPadraoUniforme = desvioPadraoUniforme.toFixed(2)
-                    inputResultadoDesvio.setAttribute('value', String(desvioPadraoUniforme))
+                    inputResultadoDesvio.value=String(desvioPadraoUniforme)
                 }
             }
         }
@@ -124,13 +124,13 @@ calculadora = function () {
             if (x == 'media') {
                 teste = verificadorEntradas('Bmedia')
                 if (teste != -1) {
-                    document.getElementById('ResultadoMediaBinominal').setAttribute('value', String(n * p))
+                    document.getElementById('ResultadoMediaBinominal').value= String(n * p)
                 }
             }
             else if (x == 'desvio') {
                 teste = verificadorEntradas('Bdesvio')
                 if (teste != -1) {
-                    document.getElementById('resultadoDesvio').setAttribute('value', String(Math.sqrt(n * p * q).toFixed(2)))
+                    document.getElementById('resultadoDesvio').value= String(Math.sqrt(n * p * q).toFixed(2))
                 }
             }
             else {
@@ -140,10 +140,11 @@ calculadora = function () {
 
                     for (i = 0; i < k.length; i++) {
                         resultado += ((fat(n) / (fat(k[i]) * fat(n - k[i]))) * Math.pow(p, k[i]) * Math.pow(q, n - k[i])) * 100
+                        alert(resultado)
                     }
                     resultado = resultado.toFixed(2)
 
-                    document.getElementById('inputResultadoBinominal').setAttribute('value', String(resultado + '%'))
+                    document.getElementById('inputResultadoBinominal').value=String(resultado + '%')
 
                 }
             }
@@ -176,10 +177,11 @@ calculadora = function () {
             }
 
             if (x == 'acima') {
+                Nacima = VtoP(document.getElementById('AcimaDe').value)
                 teste = verificadorEntradas('Nacima')
 
                 if (teste != -1) {
-                    Nacima = VtoP(document.getElementById('AcimaDe').value)
+                    
 
                     valorConvertido = ConversãoValor(Nacima)
 
@@ -196,9 +198,10 @@ calculadora = function () {
 
             }
             else if (x == 'abaixo') {
+                Nabaixo = VtoP(document.getElementById('AbaixoDe').value)
                 teste = verificadorEntradas('Nabaixo')
                 if (teste != -1) {
-                    Nabaixo = VtoP(document.getElementById('AbaixoDe').value)
+                    
                     valorConvertido = ConversãoValor(Nabaixo)
 
                     if (parseFloat(z) > 0) {
@@ -211,10 +214,11 @@ calculadora = function () {
                 }
             }
             else {
+                n1 = VtoP(document.getElementById('valorEntre').value)
+                n2 = VtoP(document.getElementById('valorE').value)
                 teste = verificadorEntradas('Nentre')
                 if (teste != -1) {
-                    n1 = VtoP(document.getElementById('valorEntre').value)
-                    n2 = VtoP(document.getElementById('valorE').value)
+
                     Cn1 = ConversãoValor(n1)
                     Cn2 = ConversãoValor(n2)
                     if (n1 < mediaNormal && n2 > mediaNormal || n1 > mediaNormal && n2 < mediaNormal) {
