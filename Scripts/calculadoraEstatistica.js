@@ -41,31 +41,41 @@ calculadora = function () {
             minimoValorUniforme = parseFloat(document.getElementById('inputValorMinimo').value)
             maximoValorUniforme = parseFloat(document.getElementById('inputValorMaximo').value)
             console.log(`Variancia = ${Math.pow(maximoValorUniforme - minimoValorUniforme, 2) / 12}`)
+
+            
             if (x == 'acima') {
+                Uacima = parseFloat(VtoP(document.getElementById('AcimaDe').value))
                 teste = verificadorEntradas('Uacima')
+
                 if (teste != -1) {
                     idUniforme = 'resultadoAcimaDe'
-                    intervaloUniforme = maximoValorUniforme - parseFloat(document.getElementById('AcimaDe').value)
+
+                    intervaloUniforme = maximoValorUniforme - Uacima
                 }
             }
             else if (x == 'abaixo') {
+                
+                Uabaixo = parseFloat(VtoP(document.getElementById('AbaixoDe').value))
                 teste = verificadorEntradas('Uabaixo')
                 if (teste != -1) {
                     idUniforme = 'resultadoAbaixoDe'
-                    intervaloUniforme = parseFloat(document.getElementById('AbaixoDe').value) - minimoValorUniforme
+                    intervaloUniforme = Uabaixo - minimoValorUniforme
                 }
             }
             else if (x == 'entre') {
+                valorEntre = parseFloat(VtoP(document.getElementById('valorEntre').value))
+                valorE= parseFloat(VtoP(document.getElementById('valorEntre').value))
                 teste = verificadorEntradas('Uentre')
                 if (teste != -1) {
                     idUniforme = 'resultadoEntre'
-                    intervaloUniforme = Math.abs(parseFloat(document.getElementById('valorEntre').value) - parseFloat(document.getElementById('valorE').value))
+                    intervaloUniforme = Math.abs(valorEntre - valorE)
                 }
             }
             if (teste != -1) {
                 resultUniforme = (1 / (maximoValorUniforme - minimoValorUniforme) * intervaloUniforme) * 100
                 resultUniforme = resultUniforme.toFixed(2)
-                document.getElementById(idUniforme).setAttribute('value', String(resultUniforme + '%'))
+            
+                document.getElementById(idUniforme).value=String(resultUniforme + '%')
             }
         }
     }

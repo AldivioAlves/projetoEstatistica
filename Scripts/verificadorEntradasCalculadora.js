@@ -10,7 +10,7 @@ verificadorEntradas = function (x) {
             return -1
 
         }
-        if (document.getElementById('AcimaDe').value == '' || isNaN(document.getElementById('AcimaDe').value)) {
+        if (Uacima == '' || isNaN(Uacima)) {
             alert('Verifique a entrada da Entrada "Acima de". \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 
@@ -29,7 +29,7 @@ verificadorEntradas = function (x) {
             return -1
 
         }
-        if (document.getElementById('AbaixoDe').value == '' || isNaN(document.getElementById('AcimaDe').value)) {
+        if (document.getElementById('AbaixoDe').value == '' || isNaN(Uacima)) {
             alert('Verifique a entrada da Entrada "Abaixo de". \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 
@@ -48,12 +48,12 @@ verificadorEntradas = function (x) {
             return -1
 
         }
-        if (document.getElementById('valorEntre').value == '' || isNaN(document.getElementById('AcimaDe').value)) {
+        if (valorEntre == '' || isNaN(Uacima)) {
             alert('Verifique a entrada da Entrada "Entre". \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 
         }
-        if (document.getElementById('valorE').value == '' || isNaN(document.getElementById('AcimaDe').value)) {
+        if (document.getElementById('valorE').value == '' || isNaN(Uacima)) {
             alert('Verifique a entrada da Entrada "E". \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 
@@ -130,12 +130,12 @@ verificadorEntradas = function (x) {
 
     }
     else if (x == 'Udesvio') {
-        if (document.getElementById('inputValorMinimo').value == '' || isNaN(document.getElementById('inputValorMinimo').value)) {
+        if (minimoValorUniforme == '' || isNaN(minimoValorUniforme)) {
             alert('Verifique a entrada "valor minimo" \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 
         }
-        if (document.getElementById('inputValorMaximo').value == '' || isNaN(document.getElementById('inputValorMaximo').value)) {
+        if (maximoValorUniforme == '' || isNaN(maximoValorUniforme)) {
             alert('Verifique a entrada "valor maximo" \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 
@@ -143,17 +143,17 @@ verificadorEntradas = function (x) {
 
     }
     if (x == 'Uacima') {
-        if (document.getElementById('inputValorMinimo').value == '' || isNaN(document.getElementById('inputValorMinimo').value)) {
+        if (minimoValorUniforme == '' || isNaN(minimoValorUniforme)) {
             alert('Verifique a entrada "valor minimo" \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 
         }
-        if (document.getElementById('inputValorMaximo').value == '' || isNaN(document.getElementById('inputValorMaximo').value)) {
+        if (maximoValorUniforme == '' || isNaN(maximoValorUniforme)) {
             alert('Verifique a entrada "valor maximo" \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 
         }
-        if (document.getElementById('AcimaDe').value == '' || isNaN(document.getElementById('AcimaDe').value)) {
+        if (Uacima == '' || isNaN(Uacima)) {
             alert('Verifique a entrada da Entrada "Acima de". \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 
@@ -162,17 +162,17 @@ verificadorEntradas = function (x) {
 
     }
     else if (x == 'Uabaixo') {
-        if (document.getElementById('inputValorMinimo').value == '' || isNaN(document.getElementById('inputValorMinimo').value)) {
+        if (minimoValorUniforme == '' || isNaN(minimoValorUniforme)) {
             alert('Verifique a entrada "valor minimo" \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 
         }
-        if (document.getElementById('inputValorMaximo').value == '' || isNaN(document.getElementById('inputValorMaximo').value)) {
+        if (maximoValorUniforme == '' || isNaN(maximoValorUniforme)) {
             alert('Verifique a entrada "valor maximo" \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 
         }
-        if (document.getElementById('AbaixoDe').value == '' || isNaN(document.getElementById('AcimaDe').value)) {
+        if (Uabaixo == '' || isNaN(Uabaixo)) {
             alert('Verifique a entrada da Entrada "Abaixo de". \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 
@@ -181,22 +181,22 @@ verificadorEntradas = function (x) {
     }
     else if (x == 'Uentre') {
 
-        if (document.getElementById('inputValorMinimo').value == '' || isNaN(document.getElementById('inputValorMinimo').value)) {
+        if (minimoValorUniforme == '' || isNaN(minimoValorUniforme)) {
             alert('Verifique a entrada "valor minimo" \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 
         }
-        if (document.getElementById('inputValorMaximo').value == '' || isNaN(document.getElementById('inputValorMaximo').value)) {
+        if (maximoValorUniforme == '' || isNaN(maximoValorUniforme)) {
             alert('Verifique a entrada "valor maximo" \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 
         }
-        if (document.getElementById('valorEntre').value == '' || isNaN(document.getElementById('valorEntre').value)) {
+        if (valorEntre == '' || isNaN(valorEntre)) {
             alert('Verifique a entrada da Entrada "Entre". \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 
         }
-        if (document.getElementById('valorE').value == '' || isNaN(document.getElementById('valorEntre').value)) {
+        if (valorE=='' || isNaN(valorE)) {
             alert('Verifique a entrada da Entrada "E". \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 
