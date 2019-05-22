@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf8" />
+      
+    </head>
+    <style type="text/css">
+
+
+    #divQuantil,#divQuintil,#divPercentil,#divDecil{
+        border:2px solid black;
+        width: 200px;
+        height:120px;
+        padding: 20px;
+        margin-bottom: 20px
+    }
+    #Centro,#caixaDispersão{
+        border:2px solid black;
+        width: 200px;
+        height:100px;
+        margin-top: 20px;
+        padding: 20px;
+
+    }
+    .tituloInformação{
+        margin-top: 60px;
+        color:brown;
+        
+    }
+
+
+    #caixaBotões{
+        margin-right: auto;
+        margin-left: auto;
+      
+      
+        padding: 0%;
+        width: 191px;
+        height: 40px;
+        margin-bottom: 10px;
+
+    }
+    .botões{
+        display: inline;
+        cursor:pointer;
+        border: 2px solid black;
+        margin-right: 4px;
+    }
+    #caixaExterna{
+        border: 4px solid black;
+        width: 500px;
+        
+        padding: 25px;
+        position: absolute;
+        background-color:white
+
+    }
+    #caixaInterna{
+        border: 2px solid black;
+        width:90%;
+        padding: 5px;
+        margin-left: auto;
+        margin-right: auto;
+    
+
+    }
+    .inputCalc{
+        width: 60px;
+        margin-left: 3px;
+        margin-right: 3px;
+        padding: 2px
+
+    }
+    h2{
+        text-align:center;
+        text-transform:uppercase;
+        text-decoration-line: underline
+
+    }
+    #fechar{
+        float:right;
+        border:2px solid red;
+        cursor:pointer
+    }
+    #botaocalc{
+        float:right;
+        
+
+    }
+    
+
+
+
+    </style>
+
+    <body>
+        <h1>
+            Variável Contínua 
+        </h1>
+        <br /><br /><br />
+
+        <table id="TQD" border='1px'>
+            <tr>
+                <th>Classes</th>
+                <th id = 'NomeDaVariavel'>
+                    nomeDosIntervalos
+                </th>
+                <th>
+                    Frequencia Simples
+                </th>
+                <th>
+                    Frequencia Acumulada
+                </th>
+                <th>
+                    Percentual Simples
+                </th>
+                <th>
+                    Percentual Acumulado
+                </th>
+            </tr>
+
+        </table><br />
+        <input type="button" onclick="calculadora()" value ="calculadora" id="botaocalc" />
+        <p id="calc"></p>
+    
+        <p class="tituloInformação">Medidas Centrais</p>
+        <div id="Centro"></div>
+            <p class="tituloInformação">Medidas de Dispersão</p>
+            <p id ="medidasSeparatrizes" class="tituloInformação" > Medidas Separatrizes</p>
+            <div id='divQuantil'>
+
+            <p>Quartil:</p>
+            <form name="MedidasSeparatrizQuartil">
+                <select name= "medidasQ" onclick="limpaSeparatriz('Q')">
+                    <option value = "Q1" >  Q<sub>1</sub>  </option>
+                    <option value ="Q2" >   Q<sub>2</sub>  </option>
+                    <option value ="Q3" >   Q<sub>3</sub>  </option>
+                    <option value ="Q4" >   Q<sub>4</sub>  </option>
+                </select>
+                <input type="button" onclick="Separatriz('Q')" value="resultado" />
+            </form><br />
+            <input type = "text" id="resultadoQuartil" size = "10" />
+        </div>
+
+
+        <div id='divQuintil'>
+        <p>Quintil:</p>
+        <form name="MedidasSeparatrizQuintil">
+            <select name= "medidasK" onclick="limpaSeparatriz('K')">
+                <option value = "k1" >  K<sub>1</sub>  </option>
+                <option value ="k2" >   K<sub>2</sub>  </option>
+                <option value ="k3" >   K<sub>3</sub>  </option>
+                <option value ="k4" >   K<sub>4</sub>  </option>
+                <option value ="k5" >   K<sub>5</sub>  </option>
+            </select>
+            <input type="button" onclick="Separatriz('K')" value="resultado" />
+        </form><br />
+        <input type = "text" id="resultadoQuintil" size = "10" />
+        </div>
+
+        <div id='divDecil'>
+            <p>Decil:</p>
+            <form name="MedidasSeparatrizDecil">
+                <select name= "medidasD" onclick="limpaSeparatriz('D')">
+                    <option value ="D1" >   D<sub>1</sub>  </option>
+                    <option value ="D2" >   D<sub>2</sub>  </option>
+                    <option value ="D3" >   D<sub>3</sub>  </option>
+                    <option value ="D4" >   D<sub>4</sub>  </option>
+                    <option value ="D5" >   D<sub>5</sub>  </option>
+                    <option value ="D6" >   D<sub>6</sub>  </option>
+                    <option value ="D7" >   D<sub>7</sub>  </option>
+                    <option value ="D8" >   D<sub>8</sub>  </option>
+                    <option value ="D9" >   D<sub>9</sub>  </option>
+                    <option value ="D10" >  D<sub>10</sub>  </option>
+                </select>
+                <input type="button" onclick="Separatriz('D')" value="resultado" />
+            </form><br />
+            <input type = "text" id="resultadoDecil" size = "10" />
+            </div>
+
+
+        <div id='divPercentil'>
+        <p>Percentil:</p>
+        <form name = "MedidasSeparatizPercentil">
+        P(%): <input type="text" id="EntradaPercentil" size=5 onclick="limpaSeparatriz('P')"/>
+        <input type="button" onclick="Separatriz('P')" value="resultado" />
+        </form><br />
+        <input type ="text" id="resultadoPercentil" size=10 />
+        </div>
+    </body>
+
+
+
+
+
+    <script src="../Scripts/OrdenaçãoVetorPrincipal.js"></script>
+    <script src="../Scripts/modaContinua.js"></script>
+    <script src="../Scripts/SeparatrizC.js"></script>
+    <script src="../Scripts/DesvioPadrão&CoeficienteVariação.js"></script>
+    <script src="../Scripts/medianaContinua.js"></script>
+    <script src="../Scripts/limpaSeparatrizes.js"></script>
+    <script src="../Scripts/calculadoraEstatistica.js"></script>
+    <script src="../Scripts/TabelaDB.js"></script>
+    
+
+
+    <script type="text/javascript">
+    
+
+
+        objetoDadosUsuario =JSON.parse(window.localStorage.getItem('dadosFormulario'))
+        vetor = objetoDadosUsuario.vetorUsuario
+
+
+      
+        
+
+        document.getElementById('NomeDaVariavel').innerText=objetoDadosUsuario.nomeVar
+
+       for(i=0;i<vetor.length;i++){
+          vetor[i]=parseFloat(vetor[i])
+        }
+        
+
+        vetor = InserçãoDireta(vetor)
+
+        Amplitude = parseInt((vetor[vetor.length -1]-vetor[0])+1)
+
+
+
+        Classes = parseInt(Math.sqrt(vetor.length))
+
+       if(Amplitude%Classes!=0 && Amplitude%(Classes+1)!=0 && Amplitude%(Classes-1)!=0){                        
+            do{
+                Amplitude+=1
+                
+                
+            }while(Amplitude%Classes!=0 && Amplitude%(Classes+1)!=0 && Amplitude%(Classes-1)!=0)
+        }
+
+        if(Amplitude%Classes==0){
+
+            IntervaloClasses = Amplitude/Classes
+        }
+        else if(Amplitude%(Classes-1)==0){
+            IntervaloClasses = Amplitude/(Classes-1)
+        }
+        else{
+            IntervaloClasses = Amplitude/(Classes+1)
+        }
+        //instanciando objeto(chave=intervalo, valor=vetor com limite dos intervalos)e vetor
+        //para armazenar a string do intervalo ( as próprias chaves do objeto acima)
+        objetoVetor={}
+        chaves=[]
+        
+
+
+        //definindo os intervalos de classe,vetores com os intervalos,
+        // calculo para a média, objeto para a moda e calculos para a mediana 
+        
+
+
+        inicioDoIntervalo = vetor[0]
+        finalDoIntervalo = vetor[0]+IntervaloClasses
+
+        vetorIntervalos = [[inicioDoIntervalo,finalDoIntervalo]]
+
+        chaveObjeto = `${inicioDoIntervalo} |-- ${finalDoIntervalo}`
+        acumuladorMedia = 0 
+        ObjetoMediaParaDispersão={}
+
+
+        objetoModa={}
+        
+
+        vetorFrequenciaSimplesAcumulada = []
+       
+
+       // if(inicioDoIntervalo<=vetor[Math.round(vetor.length/2)]){
+           // I= inicioDoIntervalo
+       // }
+        
+
+       for(i=0;i<Classes;i++){
+
+            intervalo=[]
+            inicioFinalIntervalo =[]
+
+            for(j=0;j<vetor.length;j++){
+                if(vetor[j]>=inicioDoIntervalo && vetor[j]<finalDoIntervalo || i==Classes-1 && vetor[j]==finalDoIntervalo){
+                    intervalo.push(vetor[j])
+                }
+            }
+            
+            objetoModa[((inicioDoIntervalo+finalDoIntervalo)/2).toFixed(2)]=intervalo.length
+
+            chaves.push(chaveObjeto) 
+            acumuladorMedia+= ((inicioDoIntervalo+finalDoIntervalo)/2)*intervalo.length
+            ObjetoMediaParaDispersão[chaveObjeto]=(inicioDoIntervalo+finalDoIntervalo)/2
+            objetoVetor[chaveObjeto]=intervalo
+            inicioDoIntervalo=finalDoIntervalo
+            finalDoIntervalo+=IntervaloClasses
+            chaveObjeto = `${inicioDoIntervalo} |-- ${finalDoIntervalo}`
+            inicioFinalIntervalo.push(inicioDoIntervalo)
+            inicioFinalIntervalo.push(finalDoIntervalo)
+            vetorIntervalos.push(inicioFinalIntervalo)
+
+            ///if(inicioDoIntervalo<=vetor[Math.round(vetor.length/2)]){
+           // I= inicioDoIntervalo
+        //}
+     
+                      
+        }
+        //calculo da média 
+        media = acumuladorMedia/vetor.length
+
+        //criação de um vetor para armazenamento das frequencias simples 
+        vetorFrequenciasSimples =[]
+        
+        // inserção dos intervalos de classes e frequencias na tabela.
+        
+        acumuladorFrequencia=0
+        acumuladorPercentual = 0 
+        for(i=1;i<chaves.length+1;i++){
+            /*if(objetoVetor[chaves[i-1]].length==0){
+                break
+            }*/
+            //criação de linhas na tabela
+            linha = document.createElement('tr')
+            linha.id=`linha${i}`
+            document.getElementById('TQD').appendChild(linha)
+
+            //inserçao dos n das classes na tabela 
+            classe = document.createElement('td')
+            classe.id=`classe${i}`
+            classe.innerText=i
+            document.getElementById(`linha${i}`).appendChild(classe)
+
+            //inserção dos nomes dos intervalos na tabela
+            nomeIntervalo = document.createElement('td')
+            nomeIntervalo.id = `intervalo${i}`
+            nomeIntervalo.innerText=chaves[i-1]
+            document.getElementById(`linha${i}`).appendChild(nomeIntervalo)
+
+            //inserção da frequencia simples e inserção das frequencias em um vetor para cal. moda
+            //acumulador de frequencias para o calculo da media ponderada. 
+          
+
+            frequenciaSimples = document.createElement('td')
+            frequenciaSimples.id = `frequencia${i}`
+            frequenciaSimples.innerText = objetoVetor[chaves[i-1]].length
+            document.getElementById(`linha${i}`).appendChild(frequenciaSimples)
+
+            vetorFrequenciasSimples.push(parseInt(frequenciaSimples.innerText))
+            acumuladorFrequencia+=objetoVetor[chaves[i-1]].length
+            vetorFrequenciaSimplesAcumulada.push(acumuladorFrequencia)
+
+            frequenciaAcumulada= document.createElement('td')
+            frequenciaAcumulada.id=`fAcumulada${i}`
+            frequenciaAcumulada.innerText= acumuladorFrequencia
+            document.getElementById(`linha${i}`).appendChild(frequenciaAcumulada)
+
+            calculo = 100*objetoVetor[chaves[i-1]].length/vetor.length
+            calculoPercentualSimples = parseFloat(calculo.toFixed(1))
+
+            percentualSimples = document.createElement('td')
+            percentualSimples.id = `Psimples${i}`
+            percentualSimples.innerText=calculoPercentualSimples+'%'
+            document.getElementById(`linha${i}`).appendChild(percentualSimples)
+
+            acumuladorPercentual+= calculo
+
+            percentualAcumulado = document.createElement('td')
+            percentualAcumulado.id =`Pacumulado${i}`
+            percentualAcumulado.innerText = parseFloat(acumuladorPercentual.toFixed(1))+'%'
+            document.getElementById(`linha${i}`).appendChild(percentualAcumulado)
+
+        }
+
+
+
+        tmedia = document.createElement('p')
+        tmedia.id= 'paragrafoMedia'
+        tmedia.innerText = `Média: ${media.toFixed(2)}`
+        document.getElementById("Centro").appendChild(tmedia)
+
+
+        ParagrafoModa = document.getElementById("Centro").appendChild(document.createElement('p'))
+        ParagrafoModa.id='ParagrafoModa'
+        ParagrafoModa.innerText='Moda: '+ modaContínua(objetoModa)
+
+        Pmediana= document.getElementById("Centro").appendChild(document.createElement('p'))
+        Pmediana.id='ParagrafoMediana'
+        Pmediana.innerText=`Mediana: ${MedianaContinua()}`
+        
+
+        
+        CaixaMedDispersão = document.createElement('div')
+        CaixaMedDispersão.id='caixaDispersão'
+        document.body.insertBefore(CaixaMedDispersão,document.getElementById('medidasSeparatrizes'))
+
+
+        ParagrafoDesvioPadrão = document.createElement('p')
+        ParagrafoDesvioPadrão.id='ParagrafoDesvioPadrão'
+        document.getElementById('caixaDispersão').appendChild(ParagrafoDesvioPadrão)
+        ParagrafoDesvioPadrão.innerText= 'Desvio Padrão: ' + DesvioPadrão(ObjetoMediaParaDispersão)
+
+        ParagrafoCoeficiente = document.createElement('p')
+        ParagrafoCoeficiente.id = "paragrafoCoeficiente"
+        document.getElementById('caixaDispersão').appendChild(ParagrafoCoeficiente)
+        ParagrafoCoeficiente.innerText="Coef. de Variação: "+ CoeficienteDeVariação()+'%'
+
+       
+
+    </script>
+
+</html>
+
+

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf8" />
+    <style>
+        label {
+            padding-right: 15px
+        }
+
+        select {
+            padding: 5px;
+            border: 2px solid brown;
+            margin-right: 5px
+        }
+
+        #CarregamentoMaster {
+            display: block;
+            margin-top: 15px
+        }
+
+        h3 {
+            cursor: pointer;
+
+            border: 2px solid black;
+            width: 190px
+        }
+
+        #caixaExterna {
+            border: 4px solid black;
+            width: 500px;
+
+            padding: 25px;
+            position: absolute;
+            background-color: white
+        }
+
+        #caixaInterna {
+            border: 2px solid black;
+            width: 90%;
+            padding: 5px;
+            margin-left: auto;
+            margin-right: auto;
+
+
+
+        }
+
+        .inputCalc {
+            width: 60px;
+            margin-left: 3px;
+            margin-right: 3px;
+            padding: 2px
+        }
+
+        h2 {
+            text-align: center;
+            text-transform: uppercase;
+            text-decoration-line: underline
+        }
+
+        #fechar {
+            float: right;
+            border: 2px solid red;
+            cursor: pointer
+        }
+
+        #botaocalc {
+            float: right;
+
+
+        }
+
+        .botões {
+            display: inline;
+            cursor: pointer;
+            border: 2px solid black;
+            margin-right: 4px;
+        }
+
+        #caixaBotões {
+            margin-right: auto;
+            margin-left: auto;
+
+
+            padding: 0%;
+            width: 191px;
+            height: 40px;
+            margin-bottom: 10px;
+
+        }
+
+        #teste {
+            display: none;
+        }
+
+        #descritiva {
+            border: 2px solid black;
+            width: 500px
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <div id="descritiva">
+        
+
+        <form id="formulario">
+            <label for="nomeVariavel">Digite o nome da variavel:</label>
+            <input type="text" size="33" id="nomeVariavel" name="nomevariavel" />
+
+            <p> Selecione o tipo de entrada de dados:</p>
+            <input type="radio" name="entrada" value="manual" id="eManual" onclick="entradaDados('manual')" />
+            <label for="eManual">Manual</label>
+
+
+            <input type="radio" name="entrada" value="arquivo" id="eArquivo" onclick="entradaDados('arquivo')" />
+            <label for="eArquivo">Arquivo</label><br />
+
+            <p id="PselecaoVariavel">selecione o tipo de variável: </p>
+
+            <input type="radio" name="variavel" value="Discreta" id="discreta" onclick="limpaDiv()" />
+            <label for="discreta">Discreta</label>
+
+            <input type="radio" name="variavel" value="Continua" id="continua" onclick="limpaDiv()" />
+            <label for="continua">Contínua</label>
+
+
+
+            <input type="radio" name="variavel" value="Nominal" id="nominal" onclick="limpaDiv()" />
+            <label for="nominal">Nominal</label>
+
+            <input type="radio" name="variavel" value="Ordinal" id="ordinal" onclick="variaveisOrdem()" />
+            <label for="ordinal">Ordinal</label>
+
+
+            <a id="CarregamentoMaster" href="#" onclick="validação()">
+                processar!
+            </a>
+
+
+        </form>
+    </div>
+    <p id='calc'></p>
+
+
+
+    <h3 onclick="calculadora()">Calculadora Estatistica</h3>
+
+
+
+
+
+
+</body>
+<script>
+    carregarArquivo = function () {
+
+        entradaCsv = document.getElementById('entradaArquivo')
+        entradaCsv = entradaCsv.files[0]
+        leitor = new FileReader()
+        leitor.readAsText(entradaCsv)
+
+        leitor.onload = function(){
+            entrada = leitor.result
+            
+        }
+
+
+    
+
+    }
+    
+
+    entradaDados = function (x) {
+
+        // isso é um comentário o que será que vai acontecerrr???eita trem que pullaaaa tabb
+        if (x == 'manual') {
+            if (document.getElementById('entradaArquivo') != null) {
+                document.getElementById('formulario').removeChild(document.getElementById('entradaArquivo'))
+                document.getElementById('formulario').removeChild(document.getElementById('explicação'))
+            }
+            if (document.getElementById('entradaUsuario') == null) {
+
+                entradaManual = document.getElementById('formulario').insertBefore(document.createElement('textarea'), document.getElementById('PselecaoVariavel'))
+                entradaManual.style.width = '400px'
+                entradaManual.style.height = '50px'
+                entradaManual.setAttribute('id', 'entradaUsuario')
+                explicação = document.getElementById('formulario').insertBefore(document.createElement('p'), document.getElementById('entradaUsuario'))
+                explicação.innerText = 'Digite os dados separando-os com ";", Ex: 1;2;3;1,5;7,8.'
+                explicação.setAttribute('id', 'explicação')
+
+            }
+        }
+        else {
+
+            if (document.getElementById('entradaUsuario') != null) {
+                document.getElementById('formulario').removeChild(document.getElementById('entradaUsuario'))
+                document.getElementById('formulario').removeChild(document.getElementById('explicação'))
+            }
+            if (document.getElementById('entradaArquivo') == null) {
+                entradaArquivo = document.getElementById('formulario').insertBefore(document.createElement('input'), document.getElementById('PselecaoVariavel'))
+                entradaArquivo.setAttribute('id', 'entradaArquivo')
+                entradaArquivo.setAttribute('type', 'file')
+                entradaArquivo.setAttribute('value', 'procurar')
+                entradaArquivo.setAttribute('onchange', 'carregarArquivo()')
+                explicação = document.getElementById('formulario').insertBefore(document.createElement('p'), document.getElementById('entradaArquivo'))
+                explicação.innerText = 'Selecione um arquivo do tipo .csv:'
+                explicação.setAttribute('id', 'explicação')
+
+
+
+                
+
+            }
+
+            
+
+
+        }
+        
+   
+    }
+
+</script>
+
+
+
+
+<script src="../Scripts/validacãoDados.js"> </script>
+<script src="../Scripts/OrdenaçãoVariavelOrdinal.js"> </script>
+<script src="../Scripts/armazenamentoDados.js"></script>
+<script src="../Scripts/AdicionarOpçãoAmostraOuPopulaçãoELimparCaixaOrdenação.js"></script>
+<script src="../Scripts/calculadoraEstatistica.js"></script>
+<script src="../Scripts/TabelaDB.js"></script>
+<script src="../Scripts/construtorDeElementosDaCalculadora.js"></script>
+<script src="../Scripts/verificadorEntradasCalculadora.js"></script>
+
+
+
+</html>
