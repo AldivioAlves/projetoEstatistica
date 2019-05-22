@@ -1,16 +1,16 @@
 verificadorEntradas = function (x) {
     if (x == 'Nacima') {
-        if (document.getElementById('inputMediaNormal').value == '' || isNaN(document.getElementById('inputMediaNormal').value)) {
+        if (mediaNormal == '' || isNaN(mediaNormal)) {
             alert('Verifique a entrada da Media \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 
         }
-        if (document.getElementById('inputDesvioNormal').value == '' || isNaN(document.getElementById('inputDesvioNormal').value)) {
+        if (desvioNormal == '' || isNaN(desvioNormal)) {
             alert('Verifique a entrada do Desvio \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 
         }
-        if (Uacima == '' || isNaN(Uacima)) {
+        if (Nacima == '' || isNaN(Nacima)) {
             alert('Verifique a entrada da Entrada "Acima de". \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 
@@ -19,17 +19,17 @@ verificadorEntradas = function (x) {
 
     }
     else if (x == 'Nabaixo') {
-        if (document.getElementById('inputMediaNormal').value == '' || isNaN(document.getElementById('inputMediaNormal').value)) {
+        if (mediaNormal == '' || isNaN(mediaNormal)) {
             alert('Verifique a entrada da Media \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 
         }
-        if (document.getElementById('inputDesvioNormal').value == '' || isNaN(document.getElementById('inputDesvioNormal').value)) {
+        if (desvioNormal == '' || isNaN(desvioNormal)) {
             alert('Verifique a entrada do Desvio \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 
         }
-        if (document.getElementById('AbaixoDe').value == '' || isNaN(Uacima)) {
+        if (Nabaixo == '' || isNaN(Nabaixo)) {
             alert('Verifique a entrada da Entrada "Abaixo de". \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 
@@ -38,52 +38,52 @@ verificadorEntradas = function (x) {
     }
     else if (x == 'Nentre') {
 
-        if (document.getElementById('inputMediaNormal').value == '' || isNaN(document.getElementById('inputMediaNormal').value)) {
+        if (mediaNormal == '' || isNaN(mediaNormal)) {
             alert('Verifique a entrada da Media \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 
         }
-        if (document.getElementById('inputDesvioNormal').value == '' || isNaN(document.getElementById('inputDesvioNormal').value)) {
+        if (desvioNormal == '' || isNaN(desvioNormal)) {
             alert('Verifique a entrada do Desvio \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 
         }
-        if (valorEntre == '' || isNaN(Uacima)) {
+        if (n1== '' || isNaN(n1)) {
             alert('Verifique a entrada da Entrada "Entre". \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 
         }
-        if (document.getElementById('valorE').value == '' || isNaN(Uacima)) {
+        if (n2== '' || isNaN(n2)) {
             alert('Verifique a entrada da Entrada "E". \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 
         }
     }
     else if (x == 'Bmedia') {
-        if (document.getElementById('inputTamanhoDaAmostra').value == '' || isNaN(document.getElementById('inputTamanhoDaAmostra').value)) {
+        if (n == '' || isNaN(n)) {
             alert('Verifique o campo "Tamanho da Amostra". \nO campo não pode estar vazio ou com valores que não seja numero.')
             return -1
         }
-        else if (document.getElementById('inputSucesso').value == '' || isNaN(document.getElementById('inputSucesso').value)) {
+        else if (p == '' || isNaN(p)) {
             alert('Verifique o campo "Sucesso."\nO campo não pode estar vazio ou com valores que não seja numero.')
             return -1
         }
-        else if (document.getElementById('inputFracasso').value == '' || isNaN(document.getElementById('inputFracasso').value)) {
+        else if (q == '' || isNaN(q)) {
             alert('Verifique o campo "Fracasso."\nO campo não pode estar vazio ou com valores que não seja numero.')
             return -1
         }
 
     }
     else if (x == 'Bdesvio') {
-        if (document.getElementById('inputTamanhoDaAmostra').value == '' || isNaN(document.getElementById('inputTamanhoDaAmostra').value)) {
+        if (n == '' || isNaN(n)) {
             alert('Verifique o campo "Tamanho da Amostra". \nO campo não pode estar vazio ou com valores que não seja numero.')
             return -1
         }
-        else if (document.getElementById('inputSucesso').value == '' || isNaN(document.getElementById('inputSucesso').value)) {
+        else if (p == '' || isNaN(p)) {
             alert('Verifique o campo "Sucesso."\nO campo não pode estar vazio ou com valores que não seja numero.')
             return -1
         }
-        else if (document.getElementById('inputFracasso').value == '' || isNaN(document.getElementById('inputFracasso').value)) {
+        else if (q == '' || isNaN(q)) {
             alert('Verifique o campo "Fracasso."\nO campo não pode estar vazio ou com valores que não seja numero.')
             return -1
         }
@@ -92,15 +92,15 @@ verificadorEntradas = function (x) {
 
     }
     else if (x == 'Bprob') {
-        if (document.getElementById('inputTamanhoDaAmostra').value == '' || isNaN(document.getElementById('inputTamanhoDaAmostra').value)) {
+        if (n == '' || isNaN(n)) {
             alert('Verifique o campo "Tamanho da Amostra". \nO campo não pode estar vazio ou com valores que não seja numero.')
             return -1
         }
-        if (document.getElementById('inputSucesso').value == '' || isNaN(document.getElementById('inputSucesso').value)) {
+        if (p == '' || isNaN(p)) {
             alert('Verifique o campo "Sucesso."\nO campo não pode estar vazio ou com valores que não seja numero.')
             return -1
         }
-        if (document.getElementById('inputFracasso').value == '' || isNaN(document.getElementById('inputFracasso').value)) {
+        if (q == '' || isNaN(q)) {
             alert('Verifique o campo "Fracasso."\nO campo não pode estar vazio ou com valores que não seja numero.')
             return -1
         }
@@ -118,11 +118,11 @@ verificadorEntradas = function (x) {
 
     }
     else if (x == 'Umedia') {
-        if (minimoValorUniforme=='' || isNaN(minimoValorUniforme)){
+        if (minimoValorUniforme == '' || isNaN(minimoValorUniforme)) {
             alert('Verifique a entrada "valor minimo" \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
         }
-        if (maximoValorUniforme== '' || isNaN(maximoValorUniforme)) {
+        if (maximoValorUniforme == '' || isNaN(maximoValorUniforme)) {
             alert('Verifique a entrada "valor maximo" \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 
@@ -196,7 +196,7 @@ verificadorEntradas = function (x) {
             return -1
 
         }
-        if (valorE=='' || isNaN(valorE)) {
+        if (valorE == '' || isNaN(valorE)) {
             alert('Verifique a entrada da Entrada "E". \n O campo não pode estar vazio ou com valores que não seja numero')
             return -1
 

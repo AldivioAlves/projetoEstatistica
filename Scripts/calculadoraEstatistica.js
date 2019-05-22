@@ -42,7 +42,7 @@ calculadora = function () {
             maximoValorUniforme = parseFloat(document.getElementById('inputValorMaximo').value)
             console.log(`Variancia = ${Math.pow(maximoValorUniforme - minimoValorUniforme, 2) / 12}`)
 
-            
+
             if (x == 'acima') {
                 Uacima = parseFloat(VtoP(document.getElementById('AcimaDe').value))
                 teste = verificadorEntradas('Uacima')
@@ -64,7 +64,7 @@ calculadora = function () {
             }
             else if (x == 'entre') {
                 valorEntre = parseFloat(VtoP(document.getElementById('valorEntre').value))
-                valorE= parseFloat(VtoP(document.getElementById('valorEntre').value))
+                valorE= parseFloat(VtoP(document.getElementById('valorE').value))
                 teste = verificadorEntradas('Uentre')
                 if (teste != -1) {
                     idUniforme = 'resultadoEntre'
@@ -82,9 +82,9 @@ calculadora = function () {
     fBinominal = function () {
         construtor('binominal')
         calcularBinominal = function (x) {
-            n = parseFloat(document.getElementById('inputTamanhoDaAmostra').value)
-            p = parseFloat(document.getElementById('inputSucesso').value)
-            q = parseFloat(document.getElementById('inputFracasso').value)
+            n = parseFloat(VtoP(document.getElementById('inputTamanhoDaAmostra').value))
+            p = parseFloat(VtoP(document.getElementById('inputSucesso').value))
+            q = parseFloat(VtoP(document.getElementById('inputFracasso').value))
             k = document.getElementById('inputEventos').value.split(';')
             console.log(`variancia Distribuição Binominal dos dados inseridos= ${n * q * p}`)
             //para retirar possiveis espaços entra o ";" ou no final da entrada
@@ -141,6 +141,7 @@ calculadora = function () {
                     for (i = 0; i < k.length; i++) {
                         resultado += ((fat(n) / (fat(k[i]) * fat(n - k[i]))) * Math.pow(p, k[i]) * Math.pow(q, n - k[i])) * 100
                     }
+                    resultado = resultado.toFixed(2)
 
                     document.getElementById('inputResultadoBinominal').setAttribute('value', String(resultado + '%'))
 
@@ -154,8 +155,8 @@ calculadora = function () {
         construtor('normal')
 
         calcularNormal = function (x) {
-            mediaNormal = parseFloat(document.getElementById('inputMediaNormal').value)
-            desvioNormal = parseFloat(document.getElementById('inputDesvioNormal').value)
+            mediaNormal = parseFloat(VtoP(document.getElementById('inputMediaNormal').value))
+            desvioNormal = parseFloat(VtoP(document.getElementById('inputDesvioNormal').value))
             ConversãoValor = function (n) {
                 z = (parseFloat(n) - mediaNormal) / desvioNormal
                 console.log(`numero z ${z} tipo do numero z${typeof (z)}`)
@@ -178,8 +179,9 @@ calculadora = function () {
                 teste = verificadorEntradas('Nacima')
 
                 if (teste != -1) {
+                    Nacima = VtoP(document.getElementById('AcimaDe').value)
 
-                    valorConvertido = ConversãoValor(document.getElementById('AcimaDe').value)
+                    valorConvertido = ConversãoValor(Nacima)
 
                     if (parseFloat(z) > 0) {
                         ResultAcimaDe = ((0.5 - valorConvertido) * 100).toFixed(2)
@@ -189,14 +191,15 @@ calculadora = function () {
                         ResultAcimaDe = ((0.5 + valorConvertido) * 100).toFixed(2)
                     }
 
-                    document.getElementById('resultadoAcimaDe').setAttribute('value', String(ResultAcimaDe) + '%')
+                    document.getElementById('resultadoAcimaDe').value=String(ResultAcimaDe) + '%'
                 }
 
             }
             else if (x == 'abaixo') {
                 teste = verificadorEntradas('Nabaixo')
                 if (teste != -1) {
-                    valorConvertido = ConversãoValor(document.getElementById('AbaixoDe').value)
+                    Nabaixo = VtoP(document.getElementById('AbaixoDe').value)
+                    valorConvertido = ConversãoValor(Nabaixo)
 
                     if (parseFloat(z) > 0) {
                         ResultAbaixoDe = ((0.5 + valorConvertido) * 100).toFixed(2)
@@ -204,14 +207,14 @@ calculadora = function () {
                     else {
                         ResultAbaixoDe = ((0.5 - valorConvertido) * 100).toFixed(2)
                     }
-                    document.getElementById('resultadoAbaixoDe').setAttribute('value', String(ResultAbaixoDe) + '%')
+                    document.getElementById('resultadoAbaixoDe').value=String(ResultAbaixoDe) + '%'
                 }
             }
             else {
                 teste = verificadorEntradas('Nentre')
                 if (teste != -1) {
-                    n1 = document.getElementById('valorEntre').value
-                    n2 = document.getElementById('valorE').value
+                    n1 = VtoP(document.getElementById('valorEntre').value)
+                    n2 = VtoP(document.getElementById('valorE').value)
                     Cn1 = ConversãoValor(n1)
                     Cn2 = ConversãoValor(n2)
                     if (n1 < mediaNormal && n2 > mediaNormal || n1 > mediaNormal && n2 < mediaNormal) {
@@ -220,7 +223,7 @@ calculadora = function () {
                     else {
                         ResultadoEntre = String((Math.abs(Cn1 - Cn2) * 100).toFixed(2)) + '%'
                     }
-                    document.getElementById('resultadoEntre').setAttribute('value', ResultadoEntre)
+                    document.getElementById('resultadoEntre').value=ResultadoEntre
                 }
 
             }
