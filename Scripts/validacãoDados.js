@@ -9,7 +9,15 @@ validação = function () {
     VariavelSelecionada = document.getElementById('formulario').variavel.value
     link = document.getElementById('CarregamentoMaster')
 
-    entrada = entrada.split(';')
+    PreEntrada = entrada.split('\n')
+
+
+    entrada =''
+    for(i=0;i<PreEntrada.length;i++){
+        entrada+=PreEntrada[i]+';'
+    }
+
+    entrada=entrada.split(';')
 
 
     //remover espaços entre os dados do vetor
@@ -40,6 +48,8 @@ validação = function () {
             }
         }
     }
+    
+    
 
 
     if (entrada[0] == "" && entrada.length == 1) {
