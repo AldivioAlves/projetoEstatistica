@@ -8,9 +8,10 @@ graficoDiscreta = function(){
             datasets:[{
                 label:objetoDadosUsuario.nomeVar,
                 data:frequenciaSimples,
-                borderWidth: 4,
-                borderColor: 'blue',
-                backgroundColor:'#272822',
+                borderWidth: 1,
+                borderColor: 'white',
+                backgroundColor:SeletorCores(listaVetor.length),
+
                 
             }]
         },
@@ -20,7 +21,13 @@ graficoDiscreta = function(){
                 yAxes: [{
                     ticks: {
                         beginAtZero: true
+
                     }
+                }],
+                xAxes: [{
+                    // Change here
+                    barPercentage: 1.26
+                    
                 }]
             }
         }
