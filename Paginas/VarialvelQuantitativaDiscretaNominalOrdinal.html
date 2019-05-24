@@ -1,324 +1,381 @@
-
-
 <html>
-    <head>
-        <meta charset="uft8" />
-    </head>
-    <style type="text/css">
 
-    #divQuantil,#divQuintil,#divPercentil,#divDecil{
-        border:2px solid black;
+<head>
+    <meta charset="uft8" />
+</head>
+<style type="text/css">
+    #divQuantil,
+    #divQuintil,
+    #divPercentil,
+    #divDecil {
+        border: 2px solid black;
         width: 200px;
-        height:120px;
+        height: 120px;
         padding: 20px;
         margin-bottom: 20px;
-        
+        display: none;
+
     }
-    #Centro, #caixaDispersão{
-        border:2px solid black;
+
+    #Centro,
+    #caixaDispersão {
+        border: 2px solid black;
         width: 200px;
-        height:100px;
+        height: 100px;
         margin-top: 20px;
         padding: 20px;
-        
-        
+        display: none
     }
-    #divCanvas{
+
+    #divCanvas {
         width: 50%;
         height: 50%
     }
 
-    </style>
-    <style href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css"></style>
+    #caixaMedidas {
+        float: left;
+        border: 2px solid black;
+        width: 300px;
+        height: 170px;
+
+
+    }
+
+    #TQD {
+        float: left;
+        margin-right: 100px
+    }
+
+    #selectCaixas {
+        float: left
+    }
+    #pSelecione{
+        display:block;
+        margin-bottom: 0px
+    }
+    #selecionado{
+        float:left
+    }
+</style>
+<style href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css"></style>
 
 
 
 
-    <body>
+<body>
 
-        <h1 id="titulo">
-            
-        </h1>
-        <br />
+    <h1 id="titulo">
 
-        <table id="TQD" border='1px'>
-            <tr>
-                <th id = 'nomeDaVariavel'>
-                      
-                </th>
-                <th>
-                    Frequencia Simples
-                </th>
-                <th>
-                    Frequencia Acumulada
-                </th>
-                <th>
-                    Percentual Simples
-                </th>
-                <th>
-                    Percentual Acumulado
-                </th>
-            </tr>
-        </table>
-        <p>Medidas Centrais:</p>
-        <div id = "Centro">
+    </h1>
+    <br />
 
-        </div>
-        
+    <table id="TQD" border='1px'>
+        <tr>
+            <th id='nomeDaVariavel'>
 
-        <p id="pMedidasSeparatrises"> Medidas Separatrizes</p>
-        <div id='divQuantil'>
-            <p>Quantil:</p>
-            <form name="MedidasSeparatrizQuartil">
-                <select name= "medidasQ" onclick="limpaSeparatriz('Q')">
-                    <option value = "Q1" >  Q<sub>1</sub>  </option>
-                    <option value ="Q2" >   Q<sub>2</sub>  </option>
-                    <option value ="Q3" >   Q<sub>3</sub>  </option>
-                    <option value ="Q4" >   Q<sub>4</sub>  </option>
-                </select>
-                <input type="button" onclick="sepatatrizONQ('Q')" value="resultado" />
-            </form>
-            <input type = "text" id="resultadoQuartil" size = "10" />
-        </div>
-
-
-        <div id='divQuintil'>
-            <p>Quintil:</p>
-            <form name="MedidasSeparatrizQuintil">
-                <select name= "medidasK" onclick="limpaSeparatriz('K')">
-                    <option value = "k1" >  K<sub>1</sub>  </option>
-                    <option value ="k2" >   K<sub>2</sub>  </option>
-                    <option value ="k3" >   K<sub>3</sub>  </option>
-                    <option value ="k4" >   K<sub>4</sub>  </option>
-                    <option value ="k5" >   K<sub>5</sub>  </option>
-                </select>
-                <input type="button" onclick="sepatatrizONQ('K')" value="resultado" />
-            </form>
-            <input type = "text" id="resultadoQuintil" size = "10" />
-        </div>
-
-        <div id='divDecil'>
-            <p>Decil:</p>
-            <form name="MedidasSeparatrizDecil">
-                <select name= "medidasD" onclick="limpaSeparatriz('D')">
-                    <option value ="D1" >   D<sub>1</sub>  </option>
-                    <option value ="D2" >   D<sub>2</sub>  </option>
-                    <option value ="D3" >   D<sub>3</sub>  </option>
-                    <option value ="D4" >   D<sub>4</sub>  </option>
-                    <option value ="D5" >   D<sub>5</sub>  </option>
-                    <option value ="D6" >   D<sub>6</sub>  </option>
-                    <option value ="D7" >   D<sub>7</sub>  </option>
-                    <option value ="D8" >   D<sub>8</sub>  </option>
-                    <option value ="D9" >   D<sub>9</sub>  </option>
-                    <option value ="D10" >  D<sub>10</sub>  </option>
-                </select>
-                <input type="button" onclick="sepatatrizONQ('D')" value="resultado" />
-            </form>
-            <input type = "text" id="resultadoDecil" size = "10" />
-        </div>
-
-
-        <div id='divPercentil'>
-            <p>Percentil:</p>
-            <form name = "MedidasSeparatizPercentil">
-                P(%): <input type="text" id="EntradaPercentil" size=5 onclick="limpaSeparatriz('P')"/>
-                <input type="button" onclick="sepatatrizONQ('P')" value="resultado" />
-            </form>
-            <input type ="text" id="resultadoPercentil" size=10 />
-        </div>
-        <div id ="divCanvas"><canvas id="graficoDiscreta"></canvas></div>
-        
-    </body>
-
-   
-    <script src="../Scripts/OrdenaçãoVetorPrincipal.js"></script>
-    <script src="../Scripts/MedianaDiscretaNominalOrdinal.js"></script>
-    <script src="../Scripts/ModaDiscretaNominalOrdinal.js"></script>
-    <script src="../Scripts/mediaDiscreta.js"></script>
-    <script src="../Scripts/MedianaDiscretaNominalOrdinalversao2.js"></script>
-    <script src="../Scripts/DesvioPadrão&CoeficienteVariação.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
-    <script src="../Scripts/graficoDiscreta.js"></script>
-    <script src="../Scripts/limpaSeparatrizes.js"></script>
-    <script src ="../Scripts/SeparatrizONQ.js"></script>
-    <script src="../Scripts/cores.js"></script>
+            </th>
+            <th>
+                Frequencia<br />Simples
+            </th>
+            <th>
+                Frequencia<br />Acumulada
+            </th>
+            <th>
+                Percentual<br />Simples
+            </th>
+            <th>
+                Percentual<br />Acumulado
+            </th>
+        </tr>
+    </table>
     
-    
-    
-    <script type="text/javascript">
+    <div id='caixaMedidas'>
+        <p id='pSelecione'>Selecione:</p>
+        <select id='selectCaixas' onchange="plotarMedidas()">
+            <option>---------------</option>
+            <option value="Centrais" > Centrais </option>
+            <option value="dispersão"> Dispersão </option>
+            <option value="Quartil">Quartil</option>
+            <option value="Decil"> Decil</option>
+            <option value="Quintil"> Quintil </option>
+            <option value="Percentil"> Percentil</option>
+        </select>
+        <div id='selecionado'></div>
+    </div>
 
-      
-        
+    <div id="Centro">
 
-        objetoDadosUsuario =JSON.parse(window.localStorage.getItem('dadosFormulario'))
-        document.getElementById('nomeDaVariavel').innerText=objetoDadosUsuario.nomeVar
+    </div>
 
-      
-        vetor = objetoDadosUsuario.vetorUsuario
-        
-        
 
-        if(objetoDadosUsuario.Variavel=="Discreta"){
-            document.getElementById('titulo').innerText="Variável Discreta"
+
+
+    <div id='divQuantil'>
+        <p>Quantil:</p>
+        <form name="MedidasSeparatrizQuartil">
+            <select name="medidasQ" onclick="limpaSeparatriz('Q')">
+                <option value="Q1"> Q<sub>1</sub> </option>
+                <option value="Q2"> Q<sub>2</sub> </option>
+                <option value="Q3"> Q<sub>3</sub> </option>
+                <option value="Q4"> Q<sub>4</sub> </option>
+            </select>
+            <input type="button" onclick="sepatatrizONQ('Q')" value="resultado" />
+        </form>
+        <input type="text" id="resultadoQuartil" size="10" />
+    </div>
+
+
+    <div id='divQuintil'>
+        <p>Quintil:</p>
+        <form name="MedidasSeparatrizQuintil">
+            <select name="medidasK" onclick="limpaSeparatriz('K')">
+                <option value="k1"> K<sub>1</sub> </option>
+                <option value="k2"> K<sub>2</sub> </option>
+                <option value="k3"> K<sub>3</sub> </option>
+                <option value="k4"> K<sub>4</sub> </option>
+                <option value="k5"> K<sub>5</sub> </option>
+            </select>
+            <input type="button" onclick="sepatatrizONQ('K')" value="resultado" />
+        </form>
+        <input type="text" id="resultadoQuintil" size="10" />
+    </div>
+
+    <div id='divDecil'>
+        <p>Decil:</p>
+        <form name="MedidasSeparatrizDecil">
+            <select name="medidasD" onclick="limpaSeparatriz('D')" id="MedidasSeparatrizDecil">
+                <option value="D1" onclick="plotarMedidas('centrais')"> D<sub>1</sub> </option>
+                <option value="D2"> D<sub>2</sub> </option>
+                <option value="D3"> D<sub>3</sub> </option>
+                <option value="D4"> D<sub>4</sub> </option>
+                <option value="D5"> D<sub>5</sub> </option>
+                <option value="D6"> D<sub>6</sub> </option>
+                <option value="D7"> D<sub>7</sub> </option>
+                <option value="D8"> D<sub>8</sub> </option>
+                <option value="D9"> D<sub>9</sub> </option>
+                <option value="D10"> D<sub>10</sub> </option>
+            </select>
+            <input type="button" onclick="sepatatrizONQ('D')" value="resultado" />
+        </form>
+        <input type="text" id="resultadoDecil" size="10" />
+    </div>
+
+
+    <div id='divPercentil'>
+        <p>Percentil:</p>
+        <form name="MedidasSeparatizPercentil">
+            P(%): <input type="text" id="EntradaPercentil" size=5 onclick="limpaSeparatriz('P')" />
+            <input type="button" onclick="sepatatrizONQ('P')" value="resultado" />
+        </form>
+        <input type="text" id="resultadoPercentil" size=10 />
+    </div>
+    <div id="divCanvas"><canvas id="graficoDiscreta"></canvas></div>
+
+
+</body>
+
+
+<script src="../Scripts/OrdenaçãoVetorPrincipal.js"></script>
+<script src="../Scripts/MedianaDiscretaNominalOrdinal.js"></script>
+<script src="../Scripts/ModaDiscretaNominalOrdinal.js"></script>
+<script src="../Scripts/mediaDiscreta.js"></script>
+<script src="../Scripts/MedianaDiscretaNominalOrdinalversao2.js"></script>
+<script src="../Scripts/DesvioPadrão&CoeficienteVariação.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
+<script src="../Scripts/graficoDiscreta.js"></script>
+<script src="../Scripts/limpaSeparatrizes.js"></script>
+<script src="../Scripts/SeparatrizONQ.js"></script>
+<script src="../Scripts/cores.js"></script>
+
+
+
+<script type="text/javascript">
+
+
+
+
+    objetoDadosUsuario = JSON.parse(window.localStorage.getItem('dadosFormulario'))
+    document.getElementById('nomeDaVariavel').innerText = objetoDadosUsuario.nomeVar
+
+
+    vetor = objetoDadosUsuario.vetorUsuario
+
+
+
+    if (objetoDadosUsuario.Variavel == "Discreta") {
+        document.getElementById('titulo').innerText = "Variável Discreta"
+    }
+    else if (objetoDadosUsuario.Variavel == "Nominal") {
+        document.getElementById('titulo').innerText = "Variável Nominal"
+    }
+    else {
+        document.getElementById('titulo').innerText = "Variável Ordinal"
+    }
+
+
+    if (objetoDadosUsuario.Variavel == "Discreta") {
+        for (i = 0; i < vetor.length; i++) {
+            vetor[i] = parseFloat(vetor[i])
         }
-        else if(objetoDadosUsuario.Variavel=="Nominal"){
-            document.getElementById('titulo').innerText="Variável Nominal"
+    }
+
+
+    vetor = InserçãoDireta(vetor)
+
+
+
+    objeto = {}
+
+    for (elemento = 0; elemento < vetor.length; elemento++) {
+        if (String(vetor[elemento]) in objeto) {
+            objeto[String(vetor[elemento])] += 1
+        }
+        else {
+            objeto[String(vetor[elemento])] = 1
+
+        }
+    }
+    //rotina de repetição que ordena o vetor a partir da ordem escolhida pelo usuário
+    if (objetoDadosUsuario.Variavel == "Ordinal") {
+        listaVetor = objetoDadosUsuario.OrdemVariaveis
+        vetor = []
+
+        for (i = 0; i < listaVetor.length; i++) {
+            for (j = 0; j < objeto[listaVetor[i]]; j++) {
+                vetor.push(listaVetor[i])
+            }
+        }
+    }
+    else {
+
+        listaVetor = []
+        for (chave in objeto) {
+            listaVetor.push(chave)
+        }
+    }
+
+
+
+    tabela = document.getElementById('TQD')
+    acumuladorFrequenciaSimples = 0
+    acumuladorPercentualSimples = 0
+    vetorFrequenciaSimplesAcumulada = []
+
+    frequenciaSimples = []
+    for (chaves in objeto) {
+        frequenciaSimples.push(objeto[chaves])
+    }
+
+
+    for (i = 0; i < listaVetor.length; i++) {
+
+        linha = document.createElement('tr')
+        linha.id = `linha${i + 1}`
+        document.getElementById('TQD').appendChild(linha)
+
+        NomedoElemento = document.createElement('td')
+        NomedoElemento.id = `nome${i + 1}`
+        document.getElementById(`linha${i + 1}`).appendChild(NomedoElemento)
+        NomedoElemento.innerText = listaVetor[i]
+
+        FreSimplesElemento = document.createElement('td')
+        FreSimplesElemento.id = `FSE${i + 1}`
+        document.getElementById(`linha${i + 1}`).appendChild(FreSimplesElemento)
+        FreSimplesElemento.innerText = objeto[String(listaVetor[i])]
+
+        acumuladorFrequenciaSimples += objeto[String(listaVetor[i])]
+
+
+        FreSimplesAcumulada = document.createElement('td')
+        FreSimplesAcumulada.id = `FSA${i + 1}`
+        document.getElementById(`linha${i + 1}`).appendChild(FreSimplesAcumulada)
+        FreSimplesAcumulada.innerText = acumuladorFrequenciaSimples
+        vetorFrequenciaSimplesAcumulada.push(acumuladorFrequenciaSimples)
+
+
+        calculoPerSimples = (100 * (objeto[String(listaVetor[i])])) / vetor.length
+        percentualSimples = parseFloat(calculoPerSimples.toFixed(1))
+
+        PerSimples = document.createElement('td')
+        PerSimples.id = `PS${i + 1}`
+        document.getElementById(`linha${i + 1}`).appendChild(PerSimples)
+        PerSimples.innerText = percentualSimples + '%'
+
+        acumuladorPercentualSimples += calculoPerSimples
+
+
+        PerAcumulado = document.createElement('td')
+        PerAcumulado.id = `PA${i + 1}`
+        document.getElementById(`linha${i + 1}`).appendChild(PerAcumulado)
+        PerAcumulado.innerText = acumuladorPercentualSimples.toFixed(1) + '%'
+    }
+
+
+
+    ParagrafoModa = document.createElement('p')
+    ParagrafoModa.id = 'ParagrafoModa'
+    document.getElementById('Centro').appendChild(ParagrafoModa)
+    ParagrafoModa.innerText = 'Moda: ' + moda(objeto)
+
+
+    if (objetoDadosUsuario.Variavel == "Discreta") {
+
+        ParagrafoMedia = document.createElement('p')
+        ParagrafoMedia.id = 'ParagrafoMedia'
+        document.getElementById('Centro').appendChild(ParagrafoMedia)
+        mediaFloat = media(objeto)
+        ParagrafoMedia.innerText = 'Média: ' + parseFloat(mediaFloat.toFixed(2))
+    }
+
+
+    ParagrafoMediana = document.createElement('p')
+    ParagrafoMediana.id = 'ParagrafoMediana'
+    document.getElementById('Centro').appendChild(ParagrafoMediana)
+    ParagrafoMediana.innerText = 'Mediana: ' + mediana()
+
+
+
+    if (objetoDadosUsuario.Variavel == "Discreta") {
+
+        CaixaMedDispersão = document.createElement('div')
+        CaixaMedDispersão.id = 'caixaDispersão'
+        document.body.insertBefore(CaixaMedDispersão, document.getElementById('pMedidasSeparatrises'))
+
+
+        ParagrafoDesvioPadrão = document.createElement('p')
+        ParagrafoDesvioPadrão.id = 'ParagrafoDesvioPadrão'
+        document.getElementById('caixaDispersão').appendChild(ParagrafoDesvioPadrão)
+        ParagrafoDesvioPadrão.innerText = 'Desvio Padrão: ' + DesvioPadrão(objeto)
+
+        ParagrafoCoeficiente = document.createElement('p')
+        ParagrafoCoeficiente.id = "paragrafoCoeficiente"
+        document.getElementById('caixaDispersão').appendChild(ParagrafoCoeficiente)
+        ParagrafoCoeficiente.innerText = "Coeficiente de Variação: " + CoeficienteDeVariação()
+
+
+    }
+
+    graficoDiscreta()
+
+    //document.getElementById('caixaMedidas').innerHTML=document.getElementById('divDecil').innerHTML
+
+    plotarMedidas = function(){
+        
+        if(document.getElementById('selectCaixas').value='Centrais'){
+            
+           caixa= document.getElementById('selecionado').appendChild(document.getElementById('Centro'))
+           caixa.setAttribute('class','caixaSelecionada')
+           caixa.id='caixaCentrais'
+            
         }
         else{
-            document.getElementById('titulo').innerText="Variável Ordinal"
+            alert('entrou pelo menos')
         }
+    }
 
 
-        if(objetoDadosUsuario.Variavel=="Discreta"){
-            for(i=0;i<vetor.length;i++){
-                vetor[i]=parseFloat(vetor[i])
-            }
-        }
-    
 
-        vetor = InserçãoDireta(vetor)
-        
-
-
-        objeto={}
-
-        for( elemento= 0; elemento < vetor.length; elemento++){
-            if(String(vetor[elemento])in objeto){
-                objeto[String(vetor[elemento])]+=1
-            }
-            else{
-                objeto[String(vetor[elemento])]=1
-                
-            }
-        }
-        //rotina de repetição que ordena o vetor a partir da ordem escolhida pelo usuário
-        if (objetoDadosUsuario.Variavel=="Ordinal"){
-            listaVetor= objetoDadosUsuario.OrdemVariaveis
-            vetor =[]
-
-                for (i=0;i<listaVetor.length;i++){
-                    for(j=0;j<objeto[listaVetor[i]];j++){
-                        vetor.push(listaVetor[i])
-                    }
-                }
-        }
-        else{
-
-            listaVetor = []
-            for (chave in objeto){
-                listaVetor.push(chave)
-            }
-        }
-    
-
-
-        tabela = document.getElementById('TQD')
-        acumuladorFrequenciaSimples = 0
-        acumuladorPercentualSimples = 0
-        vetorFrequenciaSimplesAcumulada= []
-
-        frequenciaSimples =[]
-        for (chaves in objeto){
-            frequenciaSimples.push(objeto[chaves])
-        }
-
-
-        for (i=0;i<listaVetor.length;i++){
-
-            linha= document.createElement('tr')
-            linha.id= `linha${i+1}`
-            document.getElementById('TQD').appendChild(linha)
-
-            NomedoElemento= document.createElement('td')
-            NomedoElemento.id =`nome${i+1}`
-            document.getElementById(`linha${i+1}`).appendChild(NomedoElemento)
-            NomedoElemento.innerText=listaVetor[i]
-
-            FreSimplesElemento = document.createElement('td')
-            FreSimplesElemento.id=`FSE${i+1}`
-            document.getElementById(`linha${i+1}`).appendChild(FreSimplesElemento)
-            FreSimplesElemento.innerText= objeto[String(listaVetor[i])]
-
-            acumuladorFrequenciaSimples+= objeto[String(listaVetor[i])]
-            
-
-            FreSimplesAcumulada = document.createElement('td')
-            FreSimplesAcumulada.id = `FSA${i+1}`
-            document.getElementById(`linha${i+1}`).appendChild(FreSimplesAcumulada)
-            FreSimplesAcumulada.innerText=acumuladorFrequenciaSimples
-            vetorFrequenciaSimplesAcumulada.push(acumuladorFrequenciaSimples)
-            
-
-            calculoPerSimples = (100*(objeto[String(listaVetor[i])]))/vetor.length
-            percentualSimples = parseFloat(calculoPerSimples.toFixed(1))
-
-            PerSimples= document.createElement('td')
-            PerSimples.id=`PS${i+1}`
-            document.getElementById(`linha${i+1}`).appendChild(PerSimples)
-            PerSimples.innerText= percentualSimples+'%'
-
-            acumuladorPercentualSimples +=calculoPerSimples
-
-
-            PerAcumulado = document.createElement('td')
-            PerAcumulado.id = `PA${i+1}`
-            document.getElementById(`linha${i+1}`).appendChild(PerAcumulado)
-            PerAcumulado.innerText= acumuladorPercentualSimples.toFixed(1)+'%'
-        }
-        
-
-
-        ParagrafoModa = document.createElement('p')
-        ParagrafoModa.id='ParagrafoModa'
-        document.getElementById('Centro').appendChild(ParagrafoModa)
-        ParagrafoModa.innerText='Moda: '+ moda(objeto)
-
-
-        if (objetoDadosUsuario.Variavel=="Discreta"){
-
-            ParagrafoMedia = document.createElement('p')
-            ParagrafoMedia.id ='ParagrafoMedia'
-            document.getElementById('Centro').appendChild(ParagrafoMedia)
-            mediaFloat = media(objeto)
-            ParagrafoMedia.innerText= 'Média: '+ parseFloat(mediaFloat.toFixed(2)) 
-        }
-        
-        
-        ParagrafoMediana = document.createElement('p')
-        ParagrafoMediana.id='ParagrafoMediana'
-        document.getElementById('Centro').appendChild(ParagrafoMediana)
-        ParagrafoMediana.innerText= 'Mediana: '+ mediana()
-
-        
-
-        if(objetoDadosUsuario.Variavel=="Discreta"){
-
-            CaixaMedDispersão = document.createElement('div')
-            CaixaMedDispersão.id='caixaDispersão'
-            document.body.insertBefore(CaixaMedDispersão,document.getElementById('pMedidasSeparatrises'))
-
-
-            ParagrafoDesvioPadrão = document.createElement('p')
-            ParagrafoDesvioPadrão.id='ParagrafoDesvioPadrão'
-            document.getElementById('caixaDispersão').appendChild(ParagrafoDesvioPadrão)
-            ParagrafoDesvioPadrão.innerText= 'Desvio Padrão: ' + DesvioPadrão(objeto)
-
-            ParagrafoCoeficiente = document.createElement('p')
-            ParagrafoCoeficiente.id = "paragrafoCoeficiente"
-            document.getElementById('caixaDispersão').appendChild(ParagrafoCoeficiente)
-            ParagrafoCoeficiente.innerText="Coeficiente de Variação: "+ CoeficienteDeVariação()
-        
-            
-        }
-
-        graficoDiscreta()
-        
-        
-
-        
-    </script>
+</script>
 
 
 </html>
-         
-

@@ -8,8 +8,8 @@ graficoDiscreta = function(){
             datasets:[{
                 label:objetoDadosUsuario.nomeVar,
                 data:frequenciaSimples,
-                borderWidth: 1,
-                borderColor: 'white',
+                borderWidth: 2,
+                borderColor: 'black',
                 backgroundColor:SeletorCores(listaVetor.length),
 
                 
