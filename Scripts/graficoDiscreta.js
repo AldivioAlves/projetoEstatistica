@@ -1,7 +1,7 @@
 graficoDiscreta = function(){
 
     contexto  = document.getElementById('graficoDiscreta')
-    borda='white'
+    borda='black'
     if (objetoDadosUsuario.Variavel=='Discreta'){
         entreBarras = 1
         tipoGrafico='bar'
