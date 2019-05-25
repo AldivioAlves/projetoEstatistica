@@ -4,6 +4,10 @@
 <head>
     <meta charset="utf8" />
     <style>
+        body{
+            margin-left: auto;
+            margin-right: auto;
+        }
         label {
             padding-right: 15px
         }
@@ -103,7 +107,9 @@
             padding: 20px;
             width: 298px;
             height: 270px;
-            border:2px solid black
+            border:2px solid black;
+            position: absolute;
+            z-index: -1;
         }
         .opçõesMenu{
             border:2px solid black;
@@ -117,6 +123,20 @@
 
             
         }
+        #descritiva{
+            display: none;
+            background-color:white;
+        }
+        #fecharDescritiva{
+            border:2px solid black;
+            color: red;
+            width: 15px;
+            height: 15px;
+            float:right;
+            margin-top:0px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
     </style>
 
 </head>
@@ -124,13 +144,16 @@
 <body>
     <p id='calc'></p>
     <div id=menu>
-        <div id="opçãoDescritiva" class="opçõesMenu">Descritiva</div>
+        <div id="opçãoDescritiva" class="opçõesMenu" onclick="entradaDescritiva()">Descritiva</div>
         <div id="opçãoCalculadora" class="opçõesMenu" onclick="calculadora()" >Calculadora</div>
         <div id="opçãoCorrelação" class="opçõesMenu">Correlação</div>
     </div>
 
 
     <div id="descritiva">
+
+        <p id="fecharDescritiva" onclick="document.getElementById('descritiva').style.display='none'">X</p>
+        <br /><br />
         
 
         <form id="formulario">
@@ -197,6 +220,9 @@
 
     
 
+    }
+    entradaDescritiva = function(){
+        document.getElementById('descritiva').style.display='block'
     }
     
 
