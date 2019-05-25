@@ -98,11 +98,36 @@
             border: 2px solid black;
             width: 500px
         }
+        #menu{
+            margin:50px auto 0px auto;
+            padding: 20px;
+            width: 298px;
+            height: 270px;
+            border:2px solid black
+        }
+        .opçõesMenu{
+            border:2px solid black;
+            width: 298px;
+            height: 80px;
+            font-size: 55px;
+            text-align: center;
+            cursor:pointer;
+            font-weight: bold;
+            margin-bottom: 7px
+
+            
+        }
     </style>
 
 </head>
 
 <body>
+    <p id='calc'></p>
+    <div id=menu>
+        <div id="opçãoDescritiva" class="opçõesMenu">Descritiva</div>
+        <div id="opçãoCalculadora" class="opçõesMenu" onclick="calculadora()" >Calculadora</div>
+        <div id="opçãoCorrelação" class="opçõesMenu">Correlação</div>
+    </div>
 
 
     <div id="descritiva">
@@ -144,11 +169,11 @@
 
         </form>
     </div>
-    <p id='calc'></p>
+    
 
 
-
-    <h3 onclick="calculadora()">Calculadora Estatistica</h3>
+    
+    
 
 
 
