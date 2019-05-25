@@ -1,21 +1,27 @@
 SeletorCores = function (qtdElementos) {
-    Combinações = '0123456789ABCDEF'
-    cor = '#'
+
     vetorCor = []
 
     for (i = 0; i < qtdElementos; i++) {
-        for (j = 0; j < 6; j++) {
-            cor += Combinações[Math.floor(Math.random() * 16)]
+
+        R = Math.floor(Math.random() * 255)
+        G = Math.floor(Math.random() * 255)
+        B = Math.floor(Math.random() * 255)
+        A = 0.5
+        cor = `rgba(${R},${G},${B},${A})`
+       
+
+        if (vetorCor.indexOf(cor) != -1) {
+            i -= 1
+
         }
-        if(vetorCor.indexOf(cor)!=-1){
-            i-=1
-            cor ='#'
-        }
-        else{
+        else {
 
             vetorCor.push(cor)
-            cor = '#'
+
         }
     }
     return vetorCor
 }
+
+

@@ -6,24 +6,24 @@ sepatatrizONQ= function(separatriz){
 		'D6':0.6,'D7':0.7,'D8':0.8,'D9':0.9,'D10':1
     }
     if(separatriz=='Q'){
-          document.getElementById('resultadoQuartil').value=""
-          Prequisitado = objetoValoresPercentual[document.MedidasSeparatrizQuartil.medidasQ.value]*vetor.length
+          document.getElementById('resultadoQuartil').innerText=""
+          Prequisitado = objetoValoresPercentual[document.getElementById('selectQ').value]*vetor.length
           idResultado = 'resultadoQuartil'
       }
       else if(separatriz=='K'){
          
-          document.getElementById('resultadoQuintil').value=""
-          Prequisitado = objetoValoresPercentual[document.MedidasSeparatrizQuintil.medidasK.value]*vetor.length
+          document.getElementById('resultadoQuintil').innerText=""
+          Prequisitado = objetoValoresPercentual[document.getElementById('selectK').value]*vetor.length
           idResultado='resultadoQuintil'
       }
       else if(separatriz=='D'){
 
-          document.getElementById('resultadoDecil').value=""
-          Prequisitado = objetoValoresPercentual[document.MedidasSeparatrizDecil.medidasD.value]*vetor.length
+          document.getElementById('resultadoDecil').innerText=""
+          Prequisitado = objetoValoresPercentual[document.getElementById('selectD').value]*vetor.length
           idResultado='resultadoDecil'
       }
     else{
-        document.getElementById('resultadoPercentil').value=""
+        document.getElementById('resultadoPercentil').innerText=""
         valorDigitado = document.getElementById('EntradaPercentil').value
         if(valorDigitado.length ==0 || valorDigitado==0 || isNaN(valorDigitado)==true){
             alert('Digite um valor numérico acima de 0')
@@ -40,5 +40,5 @@ sepatatrizONQ= function(separatriz){
 		}
 	}
 	linha = document.getElementById(`linha${indiceLinha}`).querySelectorAll('td')
-	document.getElementById(idResultado).value= linha[0].innerText
+	document.getElementById(idResultado).innerText= linha[0].innerText
 }

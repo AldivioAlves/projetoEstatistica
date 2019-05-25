@@ -4,17 +4,17 @@
     <meta charset="uft8" />
 </head>
 <style type="text/css">
-    #divQuantil,
+    #divQuartil,
     #divQuintil,
     #divPercentil,
     #divDecil {
         border: 2px solid black;
         width: 200px;
-        height: 120px;
+        height: 100px;
         padding: 20px;
-        margin-bottom: 20px;
-        display: none;
+        margin-top: 20px;
 
+        display: none
     }
 
     #Centro,
@@ -35,9 +35,9 @@
     #caixaMedidas {
         float: left;
         border: 2px solid black;
-        width: 300px;
+        width: 360px;
         height: 170px;
-
+        padding-top: 0px;
 
     }
 
@@ -47,14 +47,53 @@
     }
 
     #selectCaixas {
-        float: left
+        float: left;
+
     }
-    #pSelecione{
-        display:block;
-        margin-bottom: 0px
+
+    #pSelecione {
+        display: block;
+        margin-bottom: 0px;
+        margin-top: 0.5px;
+
     }
-    #selecionado{
-        float:left
+
+    #selecionado {
+        float: left;
+        margin-left: 10px;
+        margin-top: 0px
+    }
+
+    #elementosFixos {
+        float: left;
+        margin-left: 10px
+    }
+
+    #resultadoQuartil,
+    #resultadoQuintil,
+    #resultadoDecil,
+    #resultadoPercentil {
+        text-align: center;
+        font-weight: bold;
+        text-shadow: 2px 0px 0px gray;
+        margin-top: 10px;
+        font-size: 60px
+    }
+    #paragrafoMedia,
+    #paragrafoMediana,
+    #paragrafoModa,
+    #paragrafoDesvioPadrão,
+    #paragrafoCoeficiente{
+        font-weight: bold;
+        font-size:25px;
+        margin-top: 0.3px;
+        margin-bottom: 1px;
+        text-shadow: 2px 0px 0px gray;
+
+    }
+
+    form {
+        display: inline
     }
 </style>
 <style href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css"></style>
@@ -64,7 +103,7 @@
 
 <body>
 
-    <h1 id="titulo">
+    
 
     </h1>
     <br />
@@ -88,87 +127,91 @@
             </th>
         </tr>
     </table>
-    
+
     <div id='caixaMedidas'>
-        <p id='pSelecione'>Selecione:</p>
-        <select id='selectCaixas' onchange="plotarMedidas()">
-            <option>---------------</option>
-            <option value="Centrais" > Centrais </option>
-            <option value="dispersão"> Dispersão </option>
-            <option value="Quartil">Quartil</option>
-            <option value="Decil"> Decil</option>
-            <option value="Quintil"> Quintil </option>
-            <option value="Percentil"> Percentil</option>
-        </select>
-        <div id='selecionado'></div>
-    </div>
+        <div id='elementosFixos'>
 
-    <div id="Centro">
-
-    </div>
-
-
-
-
-    <div id='divQuantil'>
-        <p>Quantil:</p>
-        <form name="MedidasSeparatrizQuartil">
-            <select name="medidasQ" onclick="limpaSeparatriz('Q')">
-                <option value="Q1"> Q<sub>1</sub> </option>
-                <option value="Q2"> Q<sub>2</sub> </option>
-                <option value="Q3"> Q<sub>3</sub> </option>
-                <option value="Q4"> Q<sub>4</sub> </option>
+            <select id="selectCaixas" onchange="plotarMedidas()">
+                <option>Selecione</option>
+                <option value="Centrais"> Centrais </option>
+                <option value="Quartil">Quartil</option>
+                <option value="Decil"> Decil</option>
+                <option value="Quintil"> Quintil </option>
+                <option value="Percentil"> Percentil</option>
             </select>
-            <input type="button" onclick="sepatatrizONQ('Q')" value="resultado" />
-        </form>
-        <input type="text" id="resultadoQuartil" size="10" />
+        </div>
+        <div id='selecionado'>
+
+            <div id="Centro"></div>
+
+            <div id='divQuartil'>
+                <p>Quartil:
+
+                    <select id="selectQ" onchange="sepatatrizONQ('Q')">
+                        <option>Selecione</option>
+                        <option value="Q1"> Q<sub>1</sub> </option>
+                        <option value="Q2"> Q<sub>2</sub> </option>
+                        <option value="Q3"> Q<sub>3</sub> </option>
+                        <option value="Q4"> Q<sub>4</sub> </option>
+                    </select>
+
+                </p>
+
+
+                <p id="resultadoQuartil" class="ResulSeparatrizes"></p>
+            </div>
+
+
+            <div id='divQuintil'>
+                <p>Quintil:
+
+                    <select id="selectK" onchange="sepatatrizONQ('K')">
+                        <option>Selecione</option>
+                        <option value="k1"> K<sub>1</sub> </option>
+                        <option value="k2"> K<sub>2</sub> </option>
+                        <option value="k3"> K<sub>3</sub> </option>
+                        <option value="k4"> K<sub>4</sub> </option>
+                        <option value="k5"> K<sub>5</sub> </option>
+                    </select>
+
+                </p>
+                <p id="resultadoQuintil"></p>
+            </div>
+
+            <div id='divDecil'>
+                <p>Decil:
+                
+                    <select id="selectD" onchange="sepatatrizONQ('D')">
+                        <option>Selecione</option>
+                        <option value="D1"> D<sub>1</sub> </option>
+                        <option value="D2"> D<sub>2</sub> </option>
+                        <option value="D3"> D<sub>3</sub> </option>
+                        <option value="D4"> D<sub>4</sub> </option>
+                        <option value="D5"> D<sub>5</sub> </option>
+                        <option value="D6"> D<sub>6</sub> </option>
+                        <option value="D7"> D<sub>7</sub> </option>
+                        <option value="D8"> D<sub>8</sub> </option>
+                        <option value="D9"> D<sub>9</sub> </option>
+                        <option value="D10"> D<sub>10</sub> </option>
+                    </select>
+
+                </p>
+                <p id="resultadoDecil" ></p>
+            </div>
+
+
+            <div id='divPercentil'>
+                <p>Percentil:
+                
+                    <input type="text" id="EntradaPercentil" size=5 onclick="limpaSeparatriz('P')" />
+                    <input type="button" onclick="sepatatrizONQ('P')" value="=" />
+                </p>
+                
+                <p id="resultadoPercentil" ></p>
+            </div>
+        </div>
     </div>
 
-
-    <div id='divQuintil'>
-        <p>Quintil:</p>
-        <form name="MedidasSeparatrizQuintil">
-            <select name="medidasK" onclick="limpaSeparatriz('K')">
-                <option value="k1"> K<sub>1</sub> </option>
-                <option value="k2"> K<sub>2</sub> </option>
-                <option value="k3"> K<sub>3</sub> </option>
-                <option value="k4"> K<sub>4</sub> </option>
-                <option value="k5"> K<sub>5</sub> </option>
-            </select>
-            <input type="button" onclick="sepatatrizONQ('K')" value="resultado" />
-        </form>
-        <input type="text" id="resultadoQuintil" size="10" />
-    </div>
-
-    <div id='divDecil'>
-        <p>Decil:</p>
-        <form name="MedidasSeparatrizDecil">
-            <select name="medidasD" onclick="limpaSeparatriz('D')" id="MedidasSeparatrizDecil">
-                <option value="D1" onclick="plotarMedidas('centrais')"> D<sub>1</sub> </option>
-                <option value="D2"> D<sub>2</sub> </option>
-                <option value="D3"> D<sub>3</sub> </option>
-                <option value="D4"> D<sub>4</sub> </option>
-                <option value="D5"> D<sub>5</sub> </option>
-                <option value="D6"> D<sub>6</sub> </option>
-                <option value="D7"> D<sub>7</sub> </option>
-                <option value="D8"> D<sub>8</sub> </option>
-                <option value="D9"> D<sub>9</sub> </option>
-                <option value="D10"> D<sub>10</sub> </option>
-            </select>
-            <input type="button" onclick="sepatatrizONQ('D')" value="resultado" />
-        </form>
-        <input type="text" id="resultadoDecil" size="10" />
-    </div>
-
-
-    <div id='divPercentil'>
-        <p>Percentil:</p>
-        <form name="MedidasSeparatizPercentil">
-            P(%): <input type="text" id="EntradaPercentil" size=5 onclick="limpaSeparatriz('P')" />
-            <input type="button" onclick="sepatatrizONQ('P')" value="resultado" />
-        </form>
-        <input type="text" id="resultadoPercentil" size=10 />
-    </div>
     <div id="divCanvas"><canvas id="graficoDiscreta"></canvas></div>
 
 
@@ -202,15 +245,7 @@
 
 
 
-    if (objetoDadosUsuario.Variavel == "Discreta") {
-        document.getElementById('titulo').innerText = "Variável Discreta"
-    }
-    else if (objetoDadosUsuario.Variavel == "Nominal") {
-        document.getElementById('titulo').innerText = "Variável Nominal"
-    }
-    else {
-        document.getElementById('titulo').innerText = "Variável Ordinal"
-    }
+
 
 
     if (objetoDadosUsuario.Variavel == "Discreta") {
@@ -339,41 +374,102 @@
 
         CaixaMedDispersão = document.createElement('div')
         CaixaMedDispersão.id = 'caixaDispersão'
-        document.body.insertBefore(CaixaMedDispersão, document.getElementById('pMedidasSeparatrises'))
+        document.getElementById('selecionado').appendChild(CaixaMedDispersão)
 
 
         ParagrafoDesvioPadrão = document.createElement('p')
         ParagrafoDesvioPadrão.id = 'ParagrafoDesvioPadrão'
         document.getElementById('caixaDispersão').appendChild(ParagrafoDesvioPadrão)
-        ParagrafoDesvioPadrão.innerText = 'Desvio Padrão: ' + DesvioPadrão(objeto)
+        ParagrafoDesvioPadrão.innerText = 'Desvio: ' + DesvioPadrão(objeto)
 
         ParagrafoCoeficiente = document.createElement('p')
         ParagrafoCoeficiente.id = "paragrafoCoeficiente"
         document.getElementById('caixaDispersão').appendChild(ParagrafoCoeficiente)
-        ParagrafoCoeficiente.innerText = "Coeficiente de Variação: " + CoeficienteDeVariação()
+        ParagrafoCoeficiente.innerText = "CV: " + CoeficienteDeVariação()
 
 
+    }
+    if (objetoDadosUsuario.Variavel == 'Discreta') {
+        opçãoParaDiscreta = document.getElementById('selectCaixas').insertBefore(document.createElement('option'), document.getElementById('selectCaixas').querySelectorAll('option')[2])
+        opçãoParaDiscreta.innerText = 'Dispersão'
+        opçãoParaDiscreta.setAttribute('value', 'dispersão')
     }
 
     graficoDiscreta()
 
     //document.getElementById('caixaMedidas').innerHTML=document.getElementById('divDecil').innerHTML
 
-    plotarMedidas = function(){
-        
-        if(document.getElementById('selectCaixas').value='Centrais'){
-            
-           caixa= document.getElementById('selecionado').appendChild(document.getElementById('Centro'))
-           caixa.setAttribute('class','caixaSelecionada')
-           caixa.id='caixaCentrais'
-            
+    plotarMedidas = function () {
+        opção = document.getElementById('selectCaixas').value
+
+
+
+        if (opção == 'Centrais') {
+            if (objetoDadosUsuario.Variavel == 'Discreta') {
+                document.getElementById('caixaDispersão').style.display = 'none'
+            }
+
+
+            document.getElementById('divQuartil').style.display = 'none'
+            document.getElementById('divQuintil').style.display = 'none'
+            document.getElementById('divPercentil').style.display = 'none'
+            document.getElementById('divDecil').style.display = 'none'
+            document.getElementById('Centro').style.display = 'inline-block'
+
         }
-        else{
-            alert('entrou pelo menos')
+        else if (opção == 'dispersão') {
+            if (objetoDadosUsuario.Variavel == 'Discreta') {
+                document.getElementById('caixaDispersão').style.display = 'inline-block'
+            }
+            document.getElementById('divQuartil').style.display = 'none'
+            document.getElementById('divQuintil').style.display = 'none'
+            document.getElementById('divPercentil').style.display = 'none'
+            document.getElementById('divDecil').style.display = 'none'
+            document.getElementById('Centro').style.display = 'none'
         }
+        else if (opção == 'Quartil') {
+            if (objetoDadosUsuario.Variavel == 'Discreta') {
+                document.getElementById('caixaDispersão').style.display = 'none'
+            }
+            document.getElementById('divQuartil').style.display = 'inline-block'
+            document.getElementById('divQuintil').style.display = 'none'
+            document.getElementById('divPercentil').style.display = 'none'
+            document.getElementById('divDecil').style.display = 'none'
+            document.getElementById('Centro').style.display = 'none'
+        }
+        else if (opção == 'Decil') {
+            if (objetoDadosUsuario.Variavel == 'Discreta') {
+                document.getElementById('caixaDispersão').style.display = 'none'
+            }
+            document.getElementById('divQuartil').style.display = 'none'
+            document.getElementById('divQuintil').style.display = 'none'
+            document.getElementById('divPercentil').style.display = 'none'
+            document.getElementById('divDecil').style.display = 'inline-block'
+            document.getElementById('Centro').style.display = 'none'
+        }
+        else if (opção == 'Quintil') {
+            if (objetoDadosUsuario.Variavel == 'Discreta') {
+                document.getElementById('caixaDispersão').style.display = 'none'
+            }
+            document.getElementById('divQuartil').style.display = 'none'
+            document.getElementById('divQuintil').style.display = 'inline-block'
+            document.getElementById('divPercentil').style.display = 'none'
+            document.getElementById('divDecil').style.display = 'none'
+            document.getElementById('Centro').style.display = 'none'
+        }
+        else if (opção == 'Percentil') {
+            if (objetoDadosUsuario.Variavel == 'Discreta') {
+                document.getElementById('caixaDispersão').style.display = 'none'
+            }
+            document.getElementById('divQuartil').style.display = 'none'
+            document.getElementById('divQuintil').style.display = 'none'
+            document.getElementById('divPercentil').style.display = 'inline-block'
+            document.getElementById('divDecil').style.display = 'none'
+            document.getElementById('Centro').style.display = 'none'
+        }
+
+
     }
-
-
 
 </script>
 
