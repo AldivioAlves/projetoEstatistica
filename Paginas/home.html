@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<!-- test -->
+
 <head>
     <meta charset="utf8" />
     <style>
@@ -136,6 +136,12 @@
             margin-bottom: 10px;
             cursor: pointer;
         }
+        #divCorrelação{
+            width: 500px;
+            height: 300px;
+            border:2px solid black;
+            background-color:white
+        }
     </style>
 
     
@@ -146,7 +152,7 @@
     <div id=menu>
         <div id="opçãoDescritiva" class="opçõesMenu" onclick="entradaDescritiva()">Descritiva</div>
         <div id="opçãoCalculadora" class="opçõesMenu" onclick="calculadora()" >Calculadora</div>
-        <div id="opçãoCorrelação" class="opçõesMenu">Correlação</div>
+        <div id="opçãoCorrelação" class="opçõesMenu" onclick="ElementosCorrelação()">Correlação</div>
     </div>
 
 
@@ -289,6 +295,7 @@
 <script src="../Scripts/TabelaDB.js"></script>
 <script src="../Scripts/construtorDeElementosDaCalculadora.js"></script>
 <script src="../Scripts/verificadorEntradasCalculadora.js"></script>
+<script src="../Scripts/Correlação.js"></script>
 
 
 
