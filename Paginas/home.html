@@ -213,8 +213,13 @@
 <script>
     carregarArquivo = function () {
 
+
         entradaCsv = document.getElementById('entradaArquivo')
         entradaCsv = entradaCsv.files[0]
+        if(entradaCsv.type!='application/vnd.ms-excel' && entradaCsv.type!='text/plain'){
+        alert('Tipo de arquivo inválido.Selecione um arquivo do tipo .txt ou .csv')
+        document.getElementById('entradaArquivo').value=''
+    }
         leitor = new FileReader()
         leitor.readAsText(entradaCsv)
 

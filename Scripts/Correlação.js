@@ -114,6 +114,7 @@ validarEntradasC = function (tipo) {
         //entradas vazias
         if (x.value == '') {
             alert('Digite valores no campo da variavel independente.')
+            
             return
         }
         else if (y.value == '') {
@@ -128,10 +129,7 @@ validarEntradasC = function (tipo) {
     else {
 
         //dividindo a entrada em um vetor onde os elementos serão separados a partir da quebra de linha
-        if (typeof (entradaC) != 'string') {
-            alert('O arquivo deve ser modificado e recarregado.')
-            return
-        }
+
 
         entradaC = entradaC.split('\n')
 
@@ -145,11 +143,13 @@ validarEntradasC = function (tipo) {
         //se a entrada estiver apenas um elemento.
         if (entradaC.length == 1) {
             alert('O arquivo tem apenas uma linha de dados.\nEle deve ser composto por 2 linhas válidas.')
+            document.getElementById('arquivoC').value=''
             return
         }
         //se a entrada estiver mais de 2 elementos 
         else if (entradaC.length > 2) {
             alert('O arquivo tem mais de duas linhas válidas. Ele deve ser composto por apenas 2 linhas validas com dados.')
+            document.getElementById('arquivoC').value=''
             return
 
         }
@@ -167,6 +167,7 @@ validarEntradasC = function (tipo) {
     for (i = 0; i < vetorX.length; i++) {
         if (isNaN(vetorX[i])) {
             alert('Verifique os dados da variavel independente:\napenas numeros separados por";".')
+            document.getElementById('arquivoC').value=''
             return
 
         }
@@ -178,21 +179,25 @@ validarEntradasC = function (tipo) {
 
         if (isNaN(vetorY[i])) {
             alert('Verifique os dados da variavel dependente:\napenas numeros separados por";"')
+            document.getElementById('arquivoC').value=''
             return
         }
     }
     //verificação se os vetores tem a mesma quantidade de elementos válidos
     if (vetorX.length != vetorY.length) {
         alert('A quantidade de dados da variavel independente e da variavel\ndependente deve ser a mesma.')
+        document.getElementById('arquivoC').value=''
         return
     }
 
 
-    alert('chegou até o final')
-
-    //document.getElementById('arquivoC').value=''
-
-
+    window.localStorage.removeItem('dadosCorrelação')
+    objetoCorrelação = {
+        x:vetorX,
+        y:vetorY
+    }
+    window.localStorage.setItem('dadosCorrelação',JSON.stringify(objetoCorrelação))
+    submeter.setAttribute('href', 'correlação.html')
 
 }
 

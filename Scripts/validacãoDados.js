@@ -1,4 +1,8 @@
 validação = function () {
+    if(document.getElementById('entradaArquivo') != null){
+        document.getElementById('entradaArquivo').value=''
+    }
+
     if (document.getElementById('entradaUsuario') == null && document.getElementById('entradaArquivo') == null) {
         alert('Por favor, Selecione um tipo de entrada de dados.')
     }
@@ -10,6 +14,7 @@ validação = function () {
     link = document.getElementById('CarregamentoMaster')
 
     PreEntrada = entrada.split('\n')
+
 
 
     entrada =''
@@ -53,13 +58,18 @@ validação = function () {
 
 
     if (entrada[0] == "" && entrada.length == 1) {
-        alert('Digite dados no campo de entrada!')
+        alert('O entrada de dados está vazia ou só tem um elemento')
+        if(document.getElementById('entradaArquivo') != null){
+            document.getElementById('entradaArquivo').value=''
+        }
 
     }
 
     else if (entrada.length == 1) {
         alert('Digite dados válidos no campo de entrada.\nCaso tenha importado um arquivo, verifique se é um arquivo .csv válido.')
-
+        if(document.getElementById('entradaArquivo') != null){
+            document.getElementById('entradaArquivo').value=''
+        }
     }
 
 
@@ -82,6 +92,7 @@ validação = function () {
 
             link.href = "VarialvelQuantitativaDiscretaNominalOrdinal.html"
 
+
         }
 
 
@@ -90,6 +101,7 @@ validação = function () {
         else if (Numeros == entrada.length && VariavelSelecionada == "Continua") {
             armazenar()
             link.href = "VarialvelQuantitativaContinua.html"
+
 
         }
 
@@ -100,6 +112,7 @@ validação = function () {
         else if (Palavras == entrada.length && VariavelSelecionada == "Nominal") {
             armazenar()
             link.href = "VarialvelQuantitativaDiscretaNominalOrdinal.html"
+
 
 
 
@@ -129,10 +142,12 @@ validação = function () {
             if (repetidas > ordemInserida.length) {
                 alert('Por Favor, verificar a ordenação das variaveis pois existem repetições nos campos!')
 
+
             }
             else {
                 armazenar()
                 link.href = "VarialvelQuantitativaDiscretaNominalOrdinal.html"
+
             }
 
         }
@@ -140,6 +155,7 @@ validação = function () {
 
         else if (VariavelSelecionada == "") {
             alert('Selecione algum tipo de váriavel')
+
         }
 
 
@@ -147,6 +163,12 @@ validação = function () {
         else {
             alert('Para variaveis do tipo Discreta ou Continua, digite apenas numeros.\nPara variaveis do tipo Ordinal e Nominal, digite apenas palavras.')
 
+
         }
     }
+    if(document.getElementById('entradaArquivo') != null){
+        document.getElementById('entradaArquivo').value=''
+    }
 }
+
+
