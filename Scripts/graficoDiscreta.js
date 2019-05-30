@@ -32,10 +32,15 @@ graficoDiscreta = function(){
                 
             }]
         },
-
+// legenda tirada com legend:false foda-se
         options: {
+            legend:{
+                display:false
+            },
             scales: {
                 yAxes: [{
+                    
+
                     ticks: {
                         beginAtZero: true
 

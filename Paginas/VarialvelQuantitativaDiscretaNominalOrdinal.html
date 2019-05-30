@@ -26,10 +26,11 @@
     }
 
     #divCanvas {
-        float: left;
-        margin-left: -6%;
+        
+        
         width: 50%;
-        height: 50%
+        height: 50%;
+        display: none
     }
 
     #caixaMedidas {
@@ -38,15 +39,23 @@
         width: 360px;
         height: 170px;
         padding-top: 0px;
-
+        display: none
     }
-    #caixaMedidas h4{ text-align: center; }
 
-    #nav{
-       list-style: none;
+    #caixaMedidas h4 {
+        text-align: center;
     }
-    #nav li a{ color:white; font-weight: bold; }
-    #TQD_topo{
+
+    #nav {
+        list-style: none;
+    }
+
+    #nav li a {
+        color: white;
+        font-weight: bold;
+    }
+
+    #TQD_topo {
         background-color: #ccc
     }
 
@@ -65,7 +74,7 @@
         background: #ddd;
     }
 
-    #TQD th{
+    #TQD th {
         width: 21.5%;
     }
 
@@ -119,6 +128,20 @@
     form {
         display: inline
     }
+    #tabelaMedidasGrafico{
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 50px;
+        
+        padding: 20px;
+        width: 70%;
+        height: 50%;    }
+        #botõesMostrar{
+            margin-left: 650px;
+            margin-right: auto;
+            margin-top:30px;
+            
+        }
 </style>
 <style href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css"></style>
 <LINK href="../bootstrap-4.1.3-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -126,125 +149,131 @@
 
 
 <body>
-        <div id="nav" class="navbar navbar-dark bg-primary navbar-expand-lg">
-            <div class="container">
-                <li><a href="home.html">HOME</a></li>
-            </div>
+    <div id="nav" class="navbar navbar-dark bg-primary navbar-expand-lg">
+        <div class="container">
+            <li><a href="home.html">HOME</a></li>
         </div>
+    </div>
+<div id=botõesMostrar>
+    <button id='MostrarTabela'onclick="mostrarElementos('tabela')">tabela</button>
+    <button id='MostrarGrafico'onclick="mostrarElementos('grafico')">grafico</button>
+    <button id='MostrarMedidas'onclick="mostrarElementos('medidas')">Medidias</button>
+</div>
 
     <div class="container">
-       
-        </h1>
+
+
         <br />
+        <div id="tabelaMedidasGrafico">
+            <table id="TQD">
+                <tr id="TQD_topo">
+                    <th id='nomeDaVariavel'>
 
-        <table id="TQD">
-            <tr id="TQD_topo">
-                <th id='nomeDaVariavel'>
+                    </th>
+                    <th>
+                        F*
+                    </th>
+                    <th>
+                        F.c
+                    </th>
+                    <th>
+                        P*
+                    </th>
+                    <th>
+                        P.c
+                    </th>
+                </tr>
+            </table>
 
-                </th>
-                <th>
-                    F*
-                </th>
-                <th>
-                    F.c
-                </th>
-                <th>
-                    P*
-                </th>
-                <th>
-                    P.c
-                </th>
-            </tr>
-        </table>
+            <div id="divCanvas"><canvas id="graficoDiscreta"></canvas></div>
 
-        <div id="divCanvas"><canvas id="graficoDiscreta"></canvas></div>
+            <div id='caixaMedidas'>
+                <h4>MEDIDAS</h4>
+                <div id='elementosFixos'>
 
-        <div id='caixaMedidas'>
-            <h4>MEDIDAS</h4>
-            <div id='elementosFixos'>
-
-                <select id="selectCaixas" onchange="plotarMedidas()">
-                    <option>Selecione</option>
-                    <option value="Centrais"> Centrais </option>
-                    <option value="Quartil">Quartil</option>
-                    <option value="Decil"> Decil</option>
-                    <option value="Quintil"> Quintil </option>
-                    <option value="Percentil"> Percentil</option>
-                </select>
-            </div>
-            <div id='selecionado'>
-
-                <div id="Centro"></div>
-
-                <div id='divQuartil'>
-                    <p>Quartil:
-
-                        <select id="selectQ" onchange="sepatatrizONQ('Q')">
-                            <option>Selecione</option>
-                            <option value="Q1"> Q<sub>1</sub> </option>
-                            <option value="Q2"> Q<sub>2</sub> </option>
-                            <option value="Q3"> Q<sub>3</sub> </option>
-                            <option value="Q4"> Q<sub>4</sub> </option>
-                        </select>
-
-                    </p>
-
-
-                    <p id="resultadoQuartil" class="ResulSeparatrizes"></p>
+                    <select id="selectCaixas" onchange="plotarMedidas()">
+                        <option>Selecione</option>
+                        <option value="Centrais"> Centrais </option>
+                        <option value="Quartil">Quartil</option>
+                        <option value="Decil"> Decil</option>
+                        <option value="Quintil"> Quintil </option>
+                        <option value="Percentil"> Percentil</option>
+                    </select>
                 </div>
+                <div id='selecionado'>
+
+                    <div id="Centro"></div>
+
+                    <div id='divQuartil'>
+                        <p>Quartil:
+
+                            <select id="selectQ" onchange="sepatatrizONQ('Q')">
+                                <option>Selecione</option>
+                                <option value="Q1"> Q<sub>1</sub> </option>
+                                <option value="Q2"> Q<sub>2</sub> </option>
+                                <option value="Q3"> Q<sub>3</sub> </option>
+                                <option value="Q4"> Q<sub>4</sub> </option>
+                            </select>
+
+                        </p>
 
 
-                <div id='divQuintil'>
-                    <p>Quintil:
-
-                        <select id="selectK" onchange="sepatatrizONQ('K')">
-                            <option>Selecione</option>
-                            <option value="k1"> K<sub>1</sub> </option>
-                            <option value="k2"> K<sub>2</sub> </option>
-                            <option value="k3"> K<sub>3</sub> </option>
-                            <option value="k4"> K<sub>4</sub> </option>
-                            <option value="k5"> K<sub>5</sub> </option>
-                        </select>
-
-                    </p>
-                    <p id="resultadoQuintil"></p>
-                </div>
-
-                <div id='divDecil'>
-                    <p>Decil:
-
-                        <select id="selectD" onchange="sepatatrizONQ('D')">
-                            <option>Selecione</option>
-                            <option value="D1"> D<sub>1</sub> </option>
-                            <option value="D2"> D<sub>2</sub> </option>
-                            <option value="D3"> D<sub>3</sub> </option>
-                            <option value="D4"> D<sub>4</sub> </option>
-                            <option value="D5"> D<sub>5</sub> </option>
-                            <option value="D6"> D<sub>6</sub> </option>
-                            <option value="D7"> D<sub>7</sub> </option>
-                            <option value="D8"> D<sub>8</sub> </option>
-                            <option value="D9"> D<sub>9</sub> </option>
-                            <option value="D10"> D<sub>10</sub> </option>
-                        </select>
-
-                    </p>
-                    <p id="resultadoDecil"></p>
-                </div>
+                        <p id="resultadoQuartil" class="ResulSeparatrizes"></p>
+                    </div>
 
 
-                <div id='divPercentil'>
-                    <p>Percentil:
+                    <div id='divQuintil'>
+                        <p>Quintil:
 
-                        <input type="text" id="EntradaPercentil" size=5 onfocus="limpaSeparatriz('P')" />
-                        <input type="button" onclick="sepatatrizONQ('P')" value="=" />
-                    </p>
+                            <select id="selectK" onchange="sepatatrizONQ('K')">
+                                <option>Selecione</option>
+                                <option value="k1"> K<sub>1</sub> </option>
+                                <option value="k2"> K<sub>2</sub> </option>
+                                <option value="k3"> K<sub>3</sub> </option>
+                                <option value="k4"> K<sub>4</sub> </option>
+                                <option value="k5"> K<sub>5</sub> </option>
+                            </select>
 
-                    <p id="resultadoPercentil"></p>
+                        </p>
+                        <p id="resultadoQuintil"></p>
+                    </div>
+
+                    <div id='divDecil'>
+                        <p>Decil:
+
+                            <select id="selectD" onchange="sepatatrizONQ('D')">
+                                <option>Selecione</option>
+                                <option value="D1"> D<sub>1</sub> </option>
+                                <option value="D2"> D<sub>2</sub> </option>
+                                <option value="D3"> D<sub>3</sub> </option>
+                                <option value="D4"> D<sub>4</sub> </option>
+                                <option value="D5"> D<sub>5</sub> </option>
+                                <option value="D6"> D<sub>6</sub> </option>
+                                <option value="D7"> D<sub>7</sub> </option>
+                                <option value="D8"> D<sub>8</sub> </option>
+                                <option value="D9"> D<sub>9</sub> </option>
+                                <option value="D10"> D<sub>10</sub> </option>
+                            </select>
+
+                        </p>
+                        <p id="resultadoDecil"></p>
+                    </div>
+
+
+                    <div id='divPercentil'>
+                        <p>Percentil:
+
+                            <input type="text" id="EntradaPercentil" size=5 onfocus="limpaSeparatriz('P')" />
+                            <input type="button" onclick="sepatatrizONQ('P')" value="=" />
+                        </p>
+
+                        <p id="resultadoPercentil"></p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        
+
 
     </div>
 </body>
@@ -265,6 +294,25 @@
 
 
 <script type="text/javascript">
+mostrarElementos = function(x){
+    if(x=='tabela'){
+        document.getElementById('TQD').style.display='inline-block'
+        document.getElementById('divCanvas').style.display='none'
+        document.getElementById('caixaMedidas').style.display='none'
+    }
+    else if(x=='grafico'){
+        document.getElementById('TQD').style.display='none'
+        document.getElementById('divCanvas').style.display='inline-block'
+        document.getElementById('caixaMedidas').style.display='none'
+
+    }
+    else{
+        document.getElementById('TQD').style.display='none'
+        document.getElementById('divCanvas').style.display='none'
+        document.getElementById('caixaMedidas').style.display='inline-block'
+    }
+}
+
 
 
 

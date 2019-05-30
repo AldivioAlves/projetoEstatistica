@@ -33,16 +33,27 @@ plotarEntrada = function (tipo) {
 
     if (tipo == 'manual') {
         instruçãoManual = divEntrada.appendChild(criar('p', 'instruçãoManual', 'digite os dados nas entradas das variaveis separando-os com ";"'))
-        Px = divEntrada.appendChild(criar('p', 'Px', 'independente:'))
-        x = Px.appendChild(criar('input', 'independente'))
-        Py = divEntrada.appendChild(criar('p', 'Py', 'dependente:'))
-        y = Py.appendChild(criar('input', 'dependente'))
+        NomeX = divEntrada.appendChild(criar('p', 'nomeX', 'Nome da var. X: '))
+        InputNomeX = NomeX.appendChild(criar('input', 'NomeIndependente'))
+        Px = NomeX.appendChild(criar('p', 'Px', 'valores: '))
+        Px.style.display = 'inline'
+        x = NomeX.appendChild(criar('input', 'valoresIndependente'))
+        NomeY = divEntrada.appendChild(criar('p', 'nomeY', 'Nome da var. Y: '))
+        InputNomeY = NomeY.appendChild(criar('input', 'NomeDependente'))
+        Py = NomeY.appendChild(criar('p', 'Py', 'valores: '))
+        Py.style.display = 'inline'
+        y = NomeY.appendChild(criar('input', 'valoresDependente'))
         submeter = divEntrada.appendChild(criar('a', 'calculaC', 'Calcular', 'validarEntradasC("manual")'))
         submeter.setAttribute('href', '#')
 
     }
     else {
         instruçãoArquivo = divEntrada.appendChild(criar('p', '', 'Selecione um arquivo do tipo .csv ou .txt:'))
+        NomeX = divEntrada.appendChild(criar('p', 'nomeX', 'Nome da var. X: '))
+        InputNomeX = NomeX.appendChild(criar('input', 'NomeIndependente'))
+        NomeY = divEntrada.appendChild(criar('p', 'nomeY', 'Nome da var. Y: '))
+        InputNomeY = NomeY.appendChild(criar('input', 'NomeDependente'))
+
         botaoCarregarArquivo = divEntrada.appendChild(criar('input', 'arquivoC'))
         botaoCarregarArquivo.setAttribute('type', 'file')
         botaoCarregarArquivo.setAttribute('onchange', 'carregarArquivoC()')
@@ -53,6 +64,7 @@ plotarEntrada = function (tipo) {
 
 
 }
+
 
 tratamento = function (vetor) {
     //remover espaços entre os dados do vetor
@@ -93,9 +105,9 @@ carregarArquivoC = function () {
 
     entradaC = document.getElementById('arquivoC')
     entradaC = entradaC.files[0]
-    if(entradaC.type!='application/vnd.ms-excel' && entradaC.type!='text/plain'){
+    if (entradaC.type != 'application/vnd.ms-excel' && entradaC.type != 'text/plain') {
         alert('Tipo de arquivo inválido.Selecione um arquivo do tipo .txt ou .csv')
-        document.getElementById('arquivoC').value=''
+        document.getElementById('arquivoC').value = ''
     }
     leitorC = new FileReader()
     leitorC.readAsText(entradaC)
@@ -114,7 +126,7 @@ validarEntradasC = function (tipo) {
         //entradas vazias
         if (x.value == '') {
             alert('Digite valores no campo da variavel independente.')
-            
+
             return
         }
         else if (y.value == '') {
@@ -143,13 +155,13 @@ validarEntradasC = function (tipo) {
         //se a entrada estiver apenas um elemento.
         if (entradaC.length == 1) {
             alert('O arquivo tem apenas uma linha de dados.\nEle deve ser composto por 2 linhas válidas.')
-            document.getElementById('arquivoC').value=''
+            document.getElementById('arquivoC').value = ''
             return
         }
         //se a entrada estiver mais de 2 elementos 
         else if (entradaC.length > 2) {
             alert('O arquivo tem mais de duas linhas válidas. Ele deve ser composto por apenas 2 linhas validas com dados.')
-            document.getElementById('arquivoC').value=''
+            document.getElementById('arquivoC').value = ''
             return
 
         }
@@ -167,7 +179,7 @@ validarEntradasC = function (tipo) {
     for (i = 0; i < vetorX.length; i++) {
         if (isNaN(vetorX[i])) {
             alert('Verifique os dados da variavel independente:\napenas numeros separados por";".')
-            document.getElementById('arquivoC').value=''
+           // document.getElementById('arquivoC').value = ''
             return
 
         }
@@ -179,24 +191,41 @@ validarEntradasC = function (tipo) {
 
         if (isNaN(vetorY[i])) {
             alert('Verifique os dados da variavel dependente:\napenas numeros separados por";"')
-            document.getElementById('arquivoC').value=''
+           // document.getElementById('arquivoC').value = ''
             return
         }
     }
     //verificação se os vetores tem a mesma quantidade de elementos válidos
     if (vetorX.length != vetorY.length) {
         alert('A quantidade de dados da variavel independente e da variavel\ndependente deve ser a mesma.')
-        document.getElementById('arquivoC').value=''
+        document.getElementById('arquivoC').value = ''
         return
     }
 
 
     window.localStorage.removeItem('dadosCorrelação')
-    objetoCorrelação = {
-        x:vetorX,
-        y:vetorY
+
+    if (document.getElementById('NomeIndependente').value =='') {
+        InputNomeX = 'X'
     }
-    window.localStorage.setItem('dadosCorrelação',JSON.stringify(objetoCorrelação))
+    else{
+        InputNomeX=document.getElementById('NomeIndependente').value 
+    }
+    if (document.getElementById('NomeDependente').value == '') {
+        InputNomeY = 'Y'
+    }
+    else{
+        InputNomeY= document.getElementById('NomeDependente').value 
+    }
+
+    objetoCorrelação = {
+        x: vetorX,
+        y: vetorY,
+        
+        nomeX: InputNomeX+':',
+        nomeY: ':'+InputNomeY
+    }
+    window.localStorage.setItem('dadosCorrelação', JSON.stringify(objetoCorrelação))
     submeter.setAttribute('href', 'correlação.html')
 
 }
