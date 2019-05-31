@@ -41,7 +41,7 @@
     border: 2px solid black;
     width: 400px;
     height: 400px;
-
+    display: none
   }
 
   #interno {
@@ -68,9 +68,6 @@
 
 <body>
 
-  <div id="animação">
-
-  </div>
 
   <div id='teste'>
     <p>isso é um teste</p>
@@ -79,46 +76,30 @@
   </div>
   <p>mais um teste</p>
 
-  <input type="button" onclick="mudar('t')" value="mudar" />
+  <input type="button" onclick="mudar('abrir')" value="abrir" />
+  <input type='button' onclick="mudar('fechar')" value="fechar" />
 
   <div id="externo">
-    <p id="nome"><b>ALDIVIO</b></p>
-    <div id="interno"></div>
+
   </div>
 
 </body>
 <script>
 
+  teste = function(){
+    alert('eita')
+    document.getElementById('externo').display='none'
+  }
+
   mudar = function (x) {
-    if (x == 'tamanho') {
-      animar = document.getElementById('animação')
+    if (x == 'abrir') {
+
+      animar = document.getElementById('externo')
+      animar.style.display = 'block'
       animar.animate(
         [
 
-          { width: '300px', height: '300px' }, { width: '10px', height: '10px' },
-
-        ],
-
-        {
-          duration: 10000
-        }
-
-
-
-
-      )
-
-      animar.style.width = '10px'
-      animar.style.height = '10px'
-      animar.style.background = 'blue'
-
-    }
-    else{
-      animar = document.getElementById('interno')
-      animar.animate(
-        [
-
-          { opacity:'0' }, { opacity:'1' },
+          { opacity: '0' }, { opacity: '1' },
 
         ],
 
@@ -130,10 +111,31 @@
 
 
       )
-      animar.style.opacity='1'
+      animar.style.opacity = '1'
+    }
+    else {
+      animar = document.getElementById('externo')
+      animar.animate(
+        [
+
+          { opacity: '1',background:'blue',display:'block' }, { opacity: '0',background:'red',display:'none' },
+
+        ],
+
+
+        {
+          duration: 2000
+        }
+      )
+      
+     // animar.style.opacity=''
+     // animar.style.display='none'
+     teste()
 
     }
+
   }
+
 
 
 

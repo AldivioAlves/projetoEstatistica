@@ -12,9 +12,9 @@ ElementosCorrelação = function () {
     }
 
     divCorrelação = document.body.appendChild(criar('div', 'divCorrelação'))
-
-    fecharCorrelação = divCorrelação.appendChild(criar('p', 'pFechar', 'X', "document.body.removeChild(document.getElementById('divCorrelação'))"))
-
+    animar ('divCorrelação')
+    fecharCorrelação = divCorrelação.appendChild(criar('p', 'pFechar', 'X',"document.body.removeChild(document.getElementById('divCorrelação'))" ))
+    
     instrução = divCorrelação.appendChild(criar('p', 'pInstrução', 'Slecione o tipo de entrada:'))
 
     botãoManual = divCorrelação.appendChild(criar('button', 'botãoManualCorrelação', 'Manual', 'plotarEntrada("manual")'))

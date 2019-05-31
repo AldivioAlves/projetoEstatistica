@@ -2,6 +2,7 @@ construtor = function(tipo){
     if(tipo=='caixa'){
         caixaExterna = document.body.insertBefore(document.createElement('div'),document.getElementById('calc'))
         caixaExterna.setAttribute('id', 'caixaExterna')
+        animar('caixaExterna')
 
         fechar = document.getElementById('caixaExterna').appendChild(document.createElement('p'))
         fechar.setAttribute('id', 'fechar')

@@ -234,12 +234,13 @@
     }
     entradaDescritiva = function(){
         document.getElementById('descritiva').style.display='block'
+        animar('descritiva','aparecer')
     }
     
 
     entradaDados = function (x) {
 
-        // isso é um comentário o que será que vai acontecerrr???eita trem que pullaaaa tabb
+        
         if (x == 'manual') {
             if (document.getElementById('entradaArquivo') != null) {
                 document.getElementById('formulario').removeChild(document.getElementById('entradaArquivo'))
@@ -301,6 +302,7 @@
 <script src="../Scripts/construtorDeElementosDaCalculadora.js"></script>
 <script src="../Scripts/verificadorEntradasCalculadora.js"></script>
 <script src="../Scripts/Correlação.js"></script>
+<script src="../Scripts/animar.js"></script>
 
 
 

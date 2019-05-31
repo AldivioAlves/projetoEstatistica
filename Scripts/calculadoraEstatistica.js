@@ -1,5 +1,6 @@
 calculadora = function () {
     if (document.getElementById('caixaExterna') == null) {
+        
        construtor('caixa')
     }
        // virgula para pontos isso é um teste
