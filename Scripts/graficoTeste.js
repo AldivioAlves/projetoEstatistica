@@ -8,15 +8,17 @@ grafico = new Chart(contexto, {
             data: IeFlinha,
             fill: false,
             backgroundColor:'blue',
-            borderColor:'blue' ,
-            pointRadius: 0
+            borderColor:'red' ,
+            pointRadius: 0,
+            
         },
         {
             type: 'bubble',
-            label: 'Y:',
+            label: 'y',
+            
             data:vetorPontos,
-            backgroundColor: "rgba(76,78,80, .7)",
-            borderColor: "transparent",
+            backgroundColor: "black",
+            borderColor: "blue",
 
         }]
 },
@@ -25,6 +27,12 @@ grafico = new Chart(contexto, {
         legend: {
             display: false
         },
+        tooltips:{
+            mode:'nearest',
+            backgroundColor:"black"
+
+        },
+
         scales: {
             
             xAxes: [{

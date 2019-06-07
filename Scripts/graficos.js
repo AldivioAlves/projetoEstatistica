@@ -1,45 +1,61 @@
-graficoDiscreta = function(){
+grafico = function () {
 
-    contexto  = document.getElementById('graficoDiscreta')
-    borda='black'
-    if (objetoDadosUsuario.Variavel=='Discreta'){
+    contexto = document.getElementById('grafico')
+    borda = 'black'
+    if (objetoDadosUsuario.Variavel == 'Discreta') {
         entreBarras = 1
-        tipoGrafico='bar'
+        tipoGrafico = 'bar'
+        eixoX=listaVetor
+        eixoY=frequenciaSimples
+        legenda=false
+        qtdCores=listaVetor.length
+        
 
     }
-    else if(objetoDadosUsuario.Variavel=='Continua'){
+    else if (objetoDadosUsuario.Variavel == 'Continua') {
         entreBarras = 1.26
-        tipoGrafico='bar'
-    }
-    else{
-        tipoGrafico='pie'
-        entreBarras=0
+        tipoGrafico = 'bar'
+        eixoX=chaves
+        eixoY=vetorFrequenciasSimples
+        legenda=false
+        qtdCores=chaves.length
         
+        
+    }
+    else {
+        tipoGrafico = 'pie'
+        entreBarras = 0
+        eixoX = listaVetor
+        eixoY=frequenciaSimples
+        legenda = true
+        qtdCores=listaVetor.length
+        
+
     }
 
 
     grafico = new Chart(contexto, {
-        type:tipoGrafico,
-        data:{
-            labels:listaVetor,
-            datasets:[{
+        type: tipoGrafico,
+        data: {
+            labels: eixoX,
+            datasets: [{
                 label:objetoDadosUsuario.nomeVar,
-                data:frequenciaSimples,
+                data: eixoY,
                 borderWidth: 2,
                 borderColor: borda,
-                backgroundColor:SeletorCores(listaVetor.length),
+                backgroundColor: SeletorCores(qtdCores),
 
-                
+
             }]
         },
-// legenda tirada com legend:false foda-se
+        // legenda tirada com legend:false foda-se
         options: {
-            legend:{
-                display:false
+            legend: {
+                display: legenda
             },
             scales: {
                 yAxes: [{
-                    
+
 
                     ticks: {
                         beginAtZero: true
@@ -47,10 +63,10 @@ graficoDiscreta = function(){
                     }
                 }],
                 xAxes: [{
-                    
+
                     barPercentage: entreBarras,
-                    gridLines:{display:false}
-                    
+                    gridLines: { display: false }
+
                 }]
             }
         }
@@ -58,7 +74,58 @@ graficoDiscreta = function(){
 
 
     })
-   
-        
-        
+}
+
+graficoCorrelação= function(){
+contexto = document.getElementById('grafico')
+grafico = new Chart(contexto, {
+    type: 'line',
+    data: {
+        datasets: [{
+            label: 'X',
+            data: IeFlinha,
+            fill: false,
+            backgroundColor: 'blue',
+            borderColor: 'red',
+            pointRadius: 0,
+
+        },
+        {
+            type: 'bubble',
+            label: 'y',
+
+            data: vetorPontos,
+            backgroundColor: "black",
+            borderColor: "blue",
+
+        }]
+    },
+    // legenda tirada com legend:false foda-se
+    options: {
+        legend: {
+            display: false
+        },
+        tooltips: {
+            mode: 'nearest',
+            backgroundColor: "black"
+
+        },
+
+        scales: {
+
+            xAxes: [{
+                type: 'linear',
+                position: 'bottom'
+
+
+            }]
+        }
+    }
+
+
+
+})
+
+
+
 }

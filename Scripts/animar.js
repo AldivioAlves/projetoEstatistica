@@ -7,7 +7,7 @@ animar = function (elemento) {
             [
 
                 { opacity: '0' }, { opacity: '1' },
-
+                
             ],
 
             {

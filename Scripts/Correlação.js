@@ -49,17 +49,19 @@ plotarEntrada = function (tipo) {
     }
     else {
         instruçãoArquivo = divEntrada.appendChild(criar('p', '', 'Selecione um arquivo do tipo .csv ou .txt:'))
+
+        botaoCarregarArquivo = divEntrada.appendChild(criar('input', 'arquivoC'))
+        botaoCarregarArquivo.setAttribute('type', 'file')
+        botaoCarregarArquivo.setAttribute('onchange', 'carregarArquivoC()')
+
+
         NomeX = divEntrada.appendChild(criar('p', 'nomeX', 'Nome da var. X: '))
         InputNomeX = NomeX.appendChild(criar('input', 'NomeIndependente'))
         NomeY = divEntrada.appendChild(criar('p', 'nomeY', 'Nome da var. Y: '))
         InputNomeY = NomeY.appendChild(criar('input', 'NomeDependente'))
 
-        botaoCarregarArquivo = divEntrada.appendChild(criar('input', 'arquivoC'))
-        botaoCarregarArquivo.setAttribute('type', 'file')
-        botaoCarregarArquivo.setAttribute('onchange', 'carregarArquivoC()')
         submeter = divEntrada.appendChild(criar('a', 'calcularC', 'Calcular', 'validarEntradasC("arquivo")'))
         submeter.setAttribute('href', '#')
-
     }
 
 

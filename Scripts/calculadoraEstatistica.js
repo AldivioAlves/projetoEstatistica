@@ -1,21 +1,59 @@
+abriuBinominal = true
+abriuUniforme = true
+abriuNormal = true
+
+animarCaixaExterna = function (x) {
+
+    if (x == 'binominal') {
+        if (abriuBinominal != true) {
+            animarCaixa = document.getElementById('caixaExterna')
+            animarCaixa.animate([{ height: altura }, { height: '380px' }], { duration: 200 })
+        }
+    }
+    if (x == 'uniforme') {
+        if (abriuUniforme != true) {
+            animarCaixa = document.getElementById('caixaExterna')
+            animarCaixa.animate([{ height: altura }, { height: '480px' }], { duration: 200 })
+        }
+    }
+    if (x == 'normal') {
+        if (abriuUniforme != true) {
+            animarCaixa = document.getElementById('caixaExterna')
+            animarCaixa.animate(
+                [{ height: altura }, { height: '420px' }], { duration: 200 }
+            )
+        }
+
+    }
+
+}
+
+
+
 calculadora = function () {
     if (document.getElementById('caixaExterna') == null) {
-        
-       construtor('caixa')
+
+        construtor('caixa')
     }
-       // virgula para pontos isso é um teste
-       VtoP = function(n){
-          
+
+    VtoP = function (n) {
+
         for (j = 0; j < n.length; j++) {
             if (n[j] == ',') {
                 n = n.replace(n[j], '.')
-            
+
             }
         }
         return n
     }
-    
+
     fUniforme = function () {
+
+        abriuBinominal = false
+        abriuNormal = false
+        animarCaixaExterna('uniforme')
+        altura = '480px'
+        abriuUniforme = true
         construtor('uniforme')
 
         mediaEdesvio = function (x) {
@@ -33,7 +71,7 @@ calculadora = function () {
                 if (teste != -1) {
                     desvioPadraoUniforme = Math.sqrt(Math.pow(maximoValorUniforme - minimoValorUniforme, 2) / 12)
                     desvioPadraoUniforme = desvioPadraoUniforme.toFixed(2)
-                    inputResultadoDesvio.value=String(desvioPadraoUniforme)
+                    inputResultadoDesvio.value = String(desvioPadraoUniforme)
                 }
             }
         }
@@ -55,7 +93,7 @@ calculadora = function () {
                 }
             }
             else if (x == 'abaixo') {
-                
+
                 Uabaixo = parseFloat(VtoP(document.getElementById('AbaixoDe').value))
                 teste = verificadorEntradas('Uabaixo')
                 if (teste != -1) {
@@ -65,7 +103,7 @@ calculadora = function () {
             }
             else if (x == 'entre') {
                 valorEntre = parseFloat(VtoP(document.getElementById('valorEntre').value))
-                valorE= parseFloat(VtoP(document.getElementById('valorE').value))
+                valorE = parseFloat(VtoP(document.getElementById('valorE').value))
                 teste = verificadorEntradas('Uentre')
                 if (teste != -1) {
                     idUniforme = 'resultadoEntre'
@@ -75,12 +113,19 @@ calculadora = function () {
             if (teste != -1) {
                 resultUniforme = (1 / (maximoValorUniforme - minimoValorUniforme) * intervaloUniforme) * 100
                 resultUniforme = resultUniforme.toFixed(2)
-            
-                document.getElementById(idUniforme).value=String(resultUniforme + '%')
+
+                document.getElementById(idUniforme).value = String(resultUniforme + '%')
             }
         }
     }
     fBinominal = function () {
+
+        abriuUniforme = false
+        abriuNormal = false
+        animarCaixaExterna('binominal')
+        altura = '380px'
+        abriuBinominal = true
+
         construtor('binominal')
         calcularBinominal = function (x) {
             n = parseFloat(VtoP(document.getElementById('inputTamanhoDaAmostra').value))
@@ -125,13 +170,13 @@ calculadora = function () {
             if (x == 'media') {
                 teste = verificadorEntradas('Bmedia')
                 if (teste != -1) {
-                    document.getElementById('ResultadoMediaBinominal').value= String(n * p)
+                    document.getElementById('ResultadoMediaBinominal').value = String((n * p).toFixed(2))
                 }
             }
             else if (x == 'desvio') {
                 teste = verificadorEntradas('Bdesvio')
                 if (teste != -1) {
-                    document.getElementById('resultadoDesvio').value= String(Math.sqrt(n * p * q).toFixed(2))
+                    document.getElementById('resultadoDesvio').value = String(Math.sqrt(n * p * q).toFixed(2))
                 }
             }
             else {
@@ -145,7 +190,7 @@ calculadora = function () {
                     }
                     resultado = resultado.toFixed(2)
 
-                    document.getElementById('inputResultadoBinominal').value=String(resultado + '%')
+                    document.getElementById('inputResultadoBinominal').value = String(resultado + '%')
 
                 }
             }
@@ -154,7 +199,13 @@ calculadora = function () {
     }
 
     fNormal = function () {
+
         construtor('normal')
+        abriuBinominal = false
+        abriuUniforme = false
+        animarCaixaExterna('normal')
+        altura = '420px'
+        abriuNormal = true
 
         calcularNormal = function (x) {
             mediaNormal = parseFloat(VtoP(document.getElementById('inputMediaNormal').value))
@@ -166,7 +217,7 @@ calculadora = function () {
                 if (parseFloat(z) > 3.9) {
                     z = '3.90'
                 }
-                
+
                 if (z[0] == '-') {
                     console.log('valor referenciado a partir do numero z na tabela= ' + tabelaDN[z.slice(1, 4)][z.slice(4)])
                     return tabelaDN[z.slice(1, 4)][z.slice(4)]
@@ -182,7 +233,7 @@ calculadora = function () {
                 teste = verificadorEntradas('Nacima')
 
                 if (teste != -1) {
-                    
+
 
                     valorConvertido = ConversãoValor(Nacima)
 
@@ -194,7 +245,7 @@ calculadora = function () {
                         ResultAcimaDe = ((0.5 + valorConvertido) * 100).toFixed(2)
                     }
 
-                    document.getElementById('resultadoAcimaDe').value=String(ResultAcimaDe) + '%'
+                    document.getElementById('resultadoAcimaDe').value = String(ResultAcimaDe) + '%'
                 }
 
             }
@@ -202,7 +253,7 @@ calculadora = function () {
                 Nabaixo = VtoP(document.getElementById('AbaixoDe').value)
                 teste = verificadorEntradas('Nabaixo')
                 if (teste != -1) {
-                    
+
                     valorConvertido = ConversãoValor(Nabaixo)
 
                     if (parseFloat(z) > 0) {
@@ -211,7 +262,7 @@ calculadora = function () {
                     else {
                         ResultAbaixoDe = ((0.5 - valorConvertido) * 100).toFixed(2)
                     }
-                    document.getElementById('resultadoAbaixoDe').value=String(ResultAbaixoDe) + '%'
+                    document.getElementById('resultadoAbaixoDe').value = String(ResultAbaixoDe) + '%'
                 }
             }
             else {
@@ -228,7 +279,7 @@ calculadora = function () {
                     else {
                         ResultadoEntre = String((Math.abs(Cn1 - Cn2) * 100).toFixed(2)) + '%'
                     }
-                    document.getElementById('resultadoEntre').value=ResultadoEntre
+                    document.getElementById('resultadoEntre').value = ResultadoEntre
                 }
 
             }
