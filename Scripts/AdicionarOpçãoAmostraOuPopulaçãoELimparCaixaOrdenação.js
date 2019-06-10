@@ -1,7 +1,15 @@
 limpaDiv=function(){
+    
+    if(document.getElementById('formulario').variavel.value=="Nominal"){
+        animarDescritiva('nominal')
+    }
+    else{
+        animarDescritiva('AP')
+    }
     if(document.getElementById('caixa')!=null){
         document.getElementById('formulario').removeChild(document.getElementById('caixa'))
     }
+
 
     if(document.getElementById('formulario').variavel.value=="Nominal"&& document.getElementById('caixaAP')!=null){
         document.getElementById('formulario').removeChild(caixaAP)

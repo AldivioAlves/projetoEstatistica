@@ -211,6 +211,14 @@
 
 </body>
 <script>
+    
+    tManual=false
+    tArquivo=false
+    tDisCont=false
+    tNominal=false
+    tOrdinal = false
+</script>
+<script>
     carregarArquivo = function () {
 
 
@@ -242,6 +250,7 @@
 
         
         if (x == 'manual') {
+            animarDescritiva('manual')
             if (document.getElementById('entradaArquivo') != null) {
                 document.getElementById('formulario').removeChild(document.getElementById('entradaArquivo'))
                 document.getElementById('formulario').removeChild(document.getElementById('explicação'))
@@ -259,6 +268,7 @@
             }
         }
         else {
+            animarDescritiva('arquivo')
 
             if (document.getElementById('entradaUsuario') != null) {
                 document.getElementById('formulario').removeChild(document.getElementById('entradaUsuario'))
@@ -303,6 +313,7 @@
 <script src="../Scripts/verificadorEntradasCalculadora.js"></script>
 <script src="../Scripts/Correlação.js"></script>
 <script src="../Scripts/animar.js"></script>
+<script src="../Scripts/animarDescritiva.js"></script>
 
 
 
