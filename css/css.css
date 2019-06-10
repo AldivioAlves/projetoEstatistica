@@ -1,0 +1,246 @@
+body{
+    margin-left: auto;
+    margin-right: auto;
+}
+label {
+    padding-right: 15px
+}
+
+select {
+    padding: 5px;
+    border: 2px solid brown;
+    margin-right: 5px
+}
+
+#CarregamentoMaster {
+    display: block;
+    margin-top: 15px
+}
+
+h3 {
+    cursor: pointer;
+
+    border: 2px solid black;
+    width: 190px
+}
+
+#caixaExterna {
+    border: 4px solid black;
+    width: 500px;
+
+    padding: 25px;
+    position: absolute;
+    background-color: white
+}
+
+#caixaInterna {
+    border: 2px solid black;
+    width: 90%;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+
+
+
+}
+
+.inputCalc {
+    width: 60px;
+    margin-left: 3px;
+    margin-right: 3px;
+    padding: 2px
+}
+
+h2 {
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration-line: underline
+}
+
+#fechar {
+    float: right;
+    border: 2px solid red;
+    cursor: pointer
+}
+
+#botaocalc {
+    float: right;
+
+
+}
+
+.botões {
+    display: inline;
+    cursor: pointer;
+    border: 2px solid black;
+    margin-right: 4px;
+}
+
+#caixaBotões {
+    margin-right: auto;
+    margin-left: auto;
+
+
+    padding: 0%;
+    width: 191px;
+    height: 40px;
+    margin-bottom: 10px;
+
+}
+
+#teste {
+    display: none;
+}
+
+#descritiva {
+    border: 2px solid black;
+    width: 500px
+}
+#menu{
+    margin:50px auto 0px auto;
+    padding: 20px;
+    width: 360px;
+    height: 300px;
+    border:2px solid black;
+    position: absolute;
+    z-index: -1;
+    border-radius: 20px;
+}
+.opçõesMenu{
+    border:2px solid black;
+    width: 320px;
+    height: 80px;
+    font-size: 55px;
+    text-align: center;
+    cursor:pointer;
+    font-weight: bold;
+    margin-bottom: 7px;
+    border-radius: 20px;
+
+}
+#descritiva{
+    display: none;
+    background-color:white;
+}
+#fecharDescritiva{
+    border:2px solid black;
+    color: red;
+    width: 15px;
+    height: 15px;
+    float:right;
+    margin-top:0px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+#divCorrelação{
+    width:700px;
+    height: 400px;
+    border:2px solid black;
+    background-color:white
+}
+
+#imgfundo2{
+    z-index: 0;
+    background-color: #0F1B3E;
+}
+
+#nav {
+    height: 60px;
+}
+
+#menulist{
+    list-style: none;
+}
+#menulist li{
+    float: left;
+    padding: 30px;
+    margin-top: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#menulist li a {
+    color: #0FB0BE;
+    font-weight: bold;
+    font-size: 18px;
+}
+#sobre{
+    width: 60%;
+    font-size: 26px;
+    color: white;
+}
+#logoicon{
+    width: 240px;
+}
+
+#imgfundo{
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    opacity: 0.4;
+}
+
+#landingpage{
+    margin-top: 10%;
+    width: 100%;
+}
+
+#landingpage p {
+    z-index: 2;
+    position: absolute;
+    top: 240px;
+    margin-top: 4%;
+    color:white;
+    font-size: 22px;
+}
+#logop{
+    z-index: 2;
+    position: absolute;
+    left: 35%;
+    top: 200px;
+}
+
+#info{
+    background-color: #fff;
+    width: 100%;
+    height: 430px;
+    color: #0FB0BE;
+}
+#subtitle{
+    width: 40%;
+}
+#info p{
+    width: 60%;
+    font-size: 18px;
+    color: black;
+}
+
+#subtitle{
+    margin-top: -5%;
+}
+
+#informacoes{
+    margin-top: 5%;
+}
+
+#informacoes p{
+    margin-top: 5%;
+    font-size: 18px;
+    width: 100%;
+    color: black;
+}
+
+#footer{
+    margin-top: 2%;
+    background-color: #515151;
+    width: 100%;
+    height: 200px;
+}
+
+#footer p{
+    color: white;
+    font-size: 18px;
+}
+
+#logologin{
+    width: 100%;
+    padding: 10%;
+}

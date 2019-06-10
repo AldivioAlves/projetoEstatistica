@@ -1,19 +1,19 @@
 graficoDiscreta = function(){
 
     contexto  = document.getElementById('graficoDiscreta')
-    borda='black'
+    borda = 'black'
     if (objetoDadosUsuario.Variavel=='Discreta'){
         entreBarras = 1
-        tipoGrafico='bar'
+        tipoGrafico = 'bar'
 
     }
     else if(objetoDadosUsuario.Variavel=='Continua'){
         entreBarras = 1.26
-        tipoGrafico='bar'
+        tipoGrafico = 'bar'
     }
     else{
-        tipoGrafico='pie'
-        entreBarras=0
+        tipoGrafico = 'pie'
+        entreBarras = 0
         
     }
 
@@ -28,8 +28,6 @@ graficoDiscreta = function(){
                 borderWidth: 2,
                 borderColor: borda,
                 backgroundColor:SeletorCores(listaVetor.length),
-
-                
             }]
         },
 // legenda tirada com legend:false foda-se
